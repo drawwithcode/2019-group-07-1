@@ -16,16 +16,54 @@ var socket = require('socket.io');
 
 var io = socket(server);
 
-io.on("connection", newConnection);
+// io.on("connection", newConnection);
+//
+// function newConnection(socket) {
+//   console.log(socket.id);
+//
+//   socket.on("mouse", mouseMessage);
+//
+//   function mouseMessage(receivedData) {
+//     console.log(receivedData);
+//
+//     socket.broadcast.emit("mouseBroadcast", receivedData);
+//   }
+// }
 
-function newConnection(socket) {
-  console.log(socket.id);
+var allClients = [];
+var connectionsLimit = 9;
 
-  socket.on("mouse", mouseMessage);
+io.sockets.on('connection', function(socket) {
 
-  function mouseMessage(receivedData) {
+   // limit to the connections numnber
+  if (io.engine.clientsCount > connectionsLimit) {
+   socket.emit('err', { message: 'reach the limit of connections' })
+   socket.disconnect()
+   console.log('Disconnected...')
+   return
+ }
+
+  console.log("socket.id: " + socket.id);
+  allClients.push(socket);
+  // for(var i = 0; i < allClients.length; i++) {
+  //   console.log("allClients: " + allClients[i]);
+  // }
+  console.log("allClients: " + allClients.length);
+
+  socket.on("verse", verseMessage);
+
+  function verseMessage(receivedData) {
     console.log(receivedData);
-
-    socket.broadcast.emit("mouseBroadcast", receivedData);
+    console.log('id sending: ' + socket.id);
+    socket.broadcast.emit("verseBroadcast", receivedData);
   }
-}
+
+  socket.on('disconnect', function() {
+    console.log(socket.id + ' Got disconnect!');
+
+    var i = allClients.indexOf(socket);
+    allClients.splice(i, 1);
+
+
+  });
+});

@@ -14,7 +14,7 @@
   height: 70vh;
   transform: translate(-50%,-50%);
 }
-#textInput {
+.textInput {
   /* background-color: black;
   border-color: black; */
   border-bottom-color: black;

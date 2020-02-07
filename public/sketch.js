@@ -29,17 +29,20 @@ function setup() {
 
   poemContainer = select('#poemContainer');
 
+
   for (var i = 0; i < 9; i++) {
     textInput[i] = createInput();
-    textInput[i].id('textInput');
+    textInput[i].addClass('textInput');
     textInput[i].input(myInputEvent);
     textInput[i].parent(poemContainer);
     textInput[i].position(poemContainer.width / 2, i * 80);
   }
+
   // textInput = createInput();
   // textInput.id('textInput');
   // textInput.input(myInputEvent);
   // textInput.parent(poemContainer);
+
 
   submitButton = createButton('submit');
   submitButton.id('submitButton');
@@ -48,29 +51,30 @@ function setup() {
 
   socket = io(); // nuova funzione che carcica la libreria scritta in index
 
-  socket.on("mouseBroadcast", newDrawing);
+  socket.on("verseBroadcast", newDrawing);
 
   function newDrawing(receivedData) {
 
-    fill('yellow');
-    ellipse(receivedData.x, receivedData.y, 20)
+    // fill('yellow');
+    // ellipse(receivedData.x, receivedData.y, 20)
+    //textInput[0].html(receivedData);
+    textInput[0].value(receivedData.msg);
+    console.log(receivedData);
 
   }
-
-
 }
 
-function mouseDragged() {
-    fill("yellow");
-    ellipse(mouseX,mouseY, 20);
-
-    var sendData = {
-      x:mouseX,
-      y:mouseY
-    }
-
-    socket.emit('mouse', sendData);
-}
+// function mouseDragged() {
+//     fill("yellow");
+//     ellipse(mouseX,mouseY, 20);
+//
+//     var sendData = {
+//       x:mouseX,
+//       y:mouseY
+//     }
+//
+//     socket.emit('mouse', sendData);
+// }
 
 function submitVerse() {
   submitClicked = true;
@@ -160,6 +164,13 @@ function perfectData(data) {
 
 
 function myInputEvent() {
+
+      var sendData = {
+         msg: this.value()
+      }
+
+      socket.emit('verse', sendData);
+
   //console.log('you are typing: ', this.value());
 
   //   var arraySplit = this.value().split(" ");
@@ -210,7 +221,6 @@ function draw() {
     }
 
   }
-
 
 
 
