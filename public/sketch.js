@@ -18,8 +18,8 @@ var ok = false;
 var socket;
 
 var blockUsers;
-var myId;
-var id_zero;
+var myId = [];
+var clientsId = [];
 
 
 //https://api.datamuse.com/words?sp=intelligent&max=1&md=s  // conteggio sillabe
@@ -55,27 +55,36 @@ function setup() {
 
   socket = io();
 
-///////////////////////////// sending to each client its socket.id for debug
+  ///////////////////////////// sending to each client its socket.id for debug
 
 
 
   socket.on("hereIsYourID", getMyID);
 
   function getMyID(receivedData) {
-    myid = receivedData.id;
-    id_zero = receivedData.id_zero;
-    console.log('myId: ' + receivedData.id + "\nid_0: \n" + receivedData.id_zero);
+    myId = receivedData.id;
+    //console.log('myId: ' + receivedData.id);
+    //console.log(myId);
   }
 
+  socket.on("clientsUpdate", getMyUpdate);
 
-///////////////////////////// the user ONE send a message that blocks the others users from writing
+  function getMyUpdate(receivedData) {
+    //receivedData.clients.push(clientsId);
+    clientsId = receivedData.clients;
+    // console.log(receivedData.clients);
+    // console.log("clients: \n" + receivedData.clients);
+    // console.log(clientsId);
+    // console.log(clientsId[0]);
+  }
+  ///////////////////////////// the user ONE send a message that blocks the others users from writing
 
 
   socket.on("roundOneBroadcast", blockOtherUsers);
 
   function blockOtherUsers(receivedData) {
 
-    console.log(receivedData.msg);
+    //console.log(receivedData.msg);
     blockUsers = receivedData.msg;
 
   }
@@ -212,17 +221,17 @@ function perfectData(data) {
 
 function myInputEvent() {
 
-      var sendData = {
-         msg: this.value()
-      }
+  var sendData = {
+    msg: this.value()
+  }
 
-      socket.emit('verse', sendData);
+  socket.emit('verse', sendData);
 
-      // var sendProva = {
-      //    msg: this.value()
-      // }
-      //
-      // socket.emit('ddd', sendProva);
+  // var sendProva = {
+  //    msg: this.value()
+  // }
+  //
+  // socket.emit('ddd', sendProva);
 
   //console.log('you are typing: ', this.value());
 
@@ -263,30 +272,34 @@ function hideTestInput() {
     textInput[i].hide();
   }
 }
+function showTestInput() {
+  for (var i = 0; i < 9; i++) {
+    textInput[i].show();
+  }
+}
 
 function draw() {
   //background(255);
   //text(data.data[0].word, 0, 500);
 
   var mySocketid = {
-     msg: 'tell me my socket.id'
+    msg: 'tell me my socket.id'
   }
 
   socket.emit('mySocketid', mySocketid);
 
-  if (myId == id_zero) {
-    var msgOne = {
-       msg: 0
-    }
 
-    socket.emit('startRound', msgOne);
-  }
+
+    socket.emit('startRound', {msg: 0});
 
 
 
-if (blockUsers == 0) {
-  hideTestInput();
-}
+  console.log('myId: \n' + myId + '\nclientsId[0]: \n' + clientsId[0]);
+  if (myId != clientsId[0]) {
+    hideTestInput();
+  } else {
+    showTestInput();
+  };
 
 
 

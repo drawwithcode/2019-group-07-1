@@ -39,7 +39,7 @@ io.sockets.on('connection', function(socket) {
 
 
 
-    //allClients.push(socket);
+  //allClients.push(socket);
 
   // limit to the connections numnber
   if (io.engine.clientsCount > connectionsLimit) {
@@ -55,9 +55,9 @@ io.sockets.on('connection', function(socket) {
   // console.log("allClients: " + allClients.length);
   // console.log('0 = ' + allClients[0].id);
 
-
   io.of('/').clients((error, clients) => {
     if (error) throw error;
+
 
 
     socket.on('disconnect', function() {
@@ -66,37 +66,42 @@ io.sockets.on('connection', function(socket) {
       // allClients.splice(i, 1);
       var i = clients.indexOf(socket);
       clients.splice(i, 1);
+
+      console.log(clients);
+      io.emit('clientsUpdate', {
+        clients: clients
+      });
+
     });
 
+    io.emit('clientsUpdate', {
+      clients: clients
+    });
 
-    socket.on('mySocketid', function(something){
-          // we just received a message
-          // let's respond to *that* client :
-          socket.emit('hereIsYourID', { id: socket.id, id_zero: clients[0]});
+    socket.on('mySocketid', function(something) {
+      socket.emit('hereIsYourID', {
+        id: socket.id
       });
-    console.log(clients);
-  });
+    });
 
+    console.log('clients[0]: ' + clients[0]);
+    console.log('socketid: ' + socket.id);
+  });
 
   // for (var i = 0; i < allClients.length; i++) {
   //   console.log("allClients: " + allClients[i].id);
   // }
 
 
-  socket.on('startRound', roundOne);
 
 
-  function roundOne(receivedData) {
-    socket.broadcast.emit("roundOneBroadcast", receivedData);
-  }
 
-
-    // allClients[0].on('startRound', roundOne);
-    //
-    //
-    // function roundOne(receivedData) {
-    //   allClients[0].broadcast.emit("roundOneBroadcast", receivedData);
-    // }
+  // allClients[0].on('startRound', roundOne);
+  //
+  //
+  // function roundOne(receivedData) {
+  //   allClients[0].broadcast.emit("roundOneBroadcast", receivedData);
+  // }
 
 
   // socket.on("ddd", dddMessage);
@@ -106,6 +111,11 @@ io.sockets.on('connection', function(socket) {
   //   console.log('id sending: ' + socket.id);
   //   //socket.broadcast.emit("dddBroadcast", receivedData);
   //   socket.broadcast.to(allClients[0].id).emit("dddBroadcast", receivedData);
+  // }
+  // socket.on('startRound', roundOne);
+  //
+  // function roundOne(receivedData) {
+  //   socket.broadcast.emit("roundOneBroadcast", receivedData);
   // }
 
   socket.on("verse", verseMessage);
