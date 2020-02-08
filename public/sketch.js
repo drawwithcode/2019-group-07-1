@@ -17,6 +17,10 @@ var ok = false;
 
 var socket;
 
+var blockUsers;
+var myId;
+var id_zero;
+
 
 //https://api.datamuse.com/words?sp=intelligent&max=1&md=s  // conteggio sillabe
 
@@ -49,7 +53,32 @@ function setup() {
   submitButton.parent(poemContainer);
   submitButton.mouseClicked(submitVerse);
 
-  socket = io(); // nuova funzione che carcica la libreria scritta in index
+  socket = io();
+
+///////////////////////////// sending to each client its socket.id for debug
+
+
+
+  socket.on("hereIsYourID", getMyID);
+
+  function getMyID(receivedData) {
+    myid = receivedData.id;
+    id_zero = receivedData.id_zero;
+    console.log('myId: ' + receivedData.id + "\nid_0: \n" + receivedData.id_zero);
+  }
+
+
+///////////////////////////// the user ONE send a message that blocks the others users from writing
+
+
+  socket.on("roundOneBroadcast", blockOtherUsers);
+
+  function blockOtherUsers(receivedData) {
+
+    console.log(receivedData.msg);
+    blockUsers = receivedData.msg;
+
+  }
 
   socket.on("verseBroadcast", newDrawing);
 
@@ -59,9 +88,27 @@ function setup() {
     // ellipse(receivedData.x, receivedData.y, 20)
     //textInput[0].html(receivedData);
     textInput[0].value(receivedData.msg);
-    console.log(receivedData);
+    //console.log(receivedData);
 
   }
+
+  socket.on("err", connectionError);
+
+  function connectionError(receivedData) {
+
+    alert(receivedData.message);
+
+  }
+
+  socket.on("dddBroadcast", prova1);
+
+  function prova1(receivedData) {
+
+    console.log(receivedData.msg);
+    textInput[0].value(receivedData.msg);
+
+  }
+
 }
 
 // function mouseDragged() {
@@ -171,6 +218,12 @@ function myInputEvent() {
 
       socket.emit('verse', sendData);
 
+      // var sendProva = {
+      //    msg: this.value()
+      // }
+      //
+      // socket.emit('ddd', sendProva);
+
   //console.log('you are typing: ', this.value());
 
   //   var arraySplit = this.value().split(" ");
@@ -205,9 +258,38 @@ function cleanInputText(number) {
   textInput[number].html("");
 }
 
+function hideTestInput() {
+  for (var i = 0; i < 9; i++) {
+    textInput[i].hide();
+  }
+}
+
 function draw() {
   //background(255);
   //text(data.data[0].word, 0, 500);
+
+  var mySocketid = {
+     msg: 'tell me my socket.id'
+  }
+
+  socket.emit('mySocketid', mySocketid);
+
+  if (myId == id_zero) {
+    var msgOne = {
+       msg: 0
+    }
+
+    socket.emit('startRound', msgOne);
+  }
+
+
+
+if (blockUsers == 0) {
+  hideTestInput();
+}
+
+
+
   if (submitClicked == true) {
     if (ok == false) {
       if (perfectArray.some(keyword => verse3[verse3.length - 1].includes(keyword)) || homophonesArray.some(keyword => verse3[verse3.length - 1].includes(keyword))) {

@@ -30,25 +30,83 @@ var io = socket(server);
 //   }
 // }
 
-var allClients = [];
-var connectionsLimit = 9;
+
 
 io.sockets.on('connection', function(socket) {
+  //console.log(socket);
+  //var allClients = [];
+  var connectionsLimit = 4;
 
-   // limit to the connections numnber
+
+
+    //allClients.push(socket);
+
+  // limit to the connections numnber
   if (io.engine.clientsCount > connectionsLimit) {
-   socket.emit('err', { message: 'reach the limit of connections' })
-   socket.disconnect()
-   console.log('Disconnected...')
-   return
- }
+    socket.emit('err', {
+      message: 'reach the limit of connections'
+    })
+    socket.disconnect()
+    console.log('Disconnected...')
+    return
+  }
 
-  console.log("socket.id: " + socket.id);
-  allClients.push(socket);
-  // for(var i = 0; i < allClients.length; i++) {
-  //   console.log("allClients: " + allClients[i]);
+  console.log("socket connected: " + socket.id);
+  // console.log("allClients: " + allClients.length);
+  // console.log('0 = ' + allClients[0].id);
+
+
+  io.of('/').clients((error, clients) => {
+    if (error) throw error;
+
+
+    socket.on('disconnect', function() {
+      console.log(socket.id + ' Got disconnect!');
+      // var i = allClients.indexOf(socket);
+      // allClients.splice(i, 1);
+      var i = clients.indexOf(socket);
+      clients.splice(i, 1);
+    });
+
+
+    socket.on('mySocketid', function(something){
+          // we just received a message
+          // let's respond to *that* client :
+          socket.emit('hereIsYourID', { id: socket.id, id_zero: clients[0]});
+      });
+    console.log(clients);
+  });
+
+
+  // for (var i = 0; i < allClients.length; i++) {
+  //   console.log("allClients: " + allClients[i].id);
   // }
-  console.log("allClients: " + allClients.length);
+
+
+  socket.on('startRound', roundOne);
+
+
+  function roundOne(receivedData) {
+    socket.broadcast.emit("roundOneBroadcast", receivedData);
+  }
+
+
+    // allClients[0].on('startRound', roundOne);
+    //
+    //
+    // function roundOne(receivedData) {
+    //   allClients[0].broadcast.emit("roundOneBroadcast", receivedData);
+    // }
+
+
+  // socket.on("ddd", dddMessage);
+  //
+  // function dddMessage(receivedData) {
+  //   console.log(receivedData);
+  //   console.log('id sending: ' + socket.id);
+  //   //socket.broadcast.emit("dddBroadcast", receivedData);
+  //   socket.broadcast.to(allClients[0].id).emit("dddBroadcast", receivedData);
+  // }
 
   socket.on("verse", verseMessage);
 
@@ -57,13 +115,4 @@ io.sockets.on('connection', function(socket) {
     console.log('id sending: ' + socket.id);
     socket.broadcast.emit("verseBroadcast", receivedData);
   }
-
-  socket.on('disconnect', function() {
-    console.log(socket.id + ' Got disconnect!');
-
-    var i = allClients.indexOf(socket);
-    allClients.splice(i, 1);
-
-
-  });
 });
