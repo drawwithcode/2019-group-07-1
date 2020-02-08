@@ -41,7 +41,7 @@ io.sockets.on('connection', function(socket) {
 
   //allClients.push(socket);
 
-  // limit to the connections numnber
+  // limit to the connections number
   if (io.engine.clientsCount > connectionsLimit) {
     socket.emit('err', {
       message: 'reach the limit of connections'
@@ -62,20 +62,27 @@ io.sockets.on('connection', function(socket) {
 
     socket.on('disconnect', function() {
       console.log(socket.id + ' Got disconnect!');
+
       // var i = allClients.indexOf(socket);
       // allClients.splice(i, 1);
       var i = clients.indexOf(socket);
       clients.splice(i, 1);
 
-      console.log(clients);
+
       io.emit('clientsUpdate', {
-        clients: clients
+        clients: clients,
+        n_clients: io.engine.clientsCount
       });
 
     });
 
+    socket.on('terminate', function() {
+      socket.disconnect(0);
+    });
+
     io.emit('clientsUpdate', {
-      clients: clients
+      clients: clients,
+      n_clients: io.engine.clientsCount
     });
 
     socket.on('mySocketid', function(something) {
@@ -86,6 +93,8 @@ io.sockets.on('connection', function(socket) {
 
     console.log('clients[0]: ' + clients[0]);
     console.log('socketid: ' + socket.id);
+    console.log('clients: ' + clients);
+    console.log('number of clients: ' + io.engine.clientsCount);
   });
 
   // for (var i = 0; i < allClients.length; i++) {

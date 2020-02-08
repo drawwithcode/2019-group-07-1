@@ -24,12 +24,20 @@
   /* position: absolute;
   top: 30%;
   left: 50%; */
-  width: 500px;
-  height: 40px;
+  width: 40vw;
+  height: 3vh;
   transform: translateX(-50%);
 }
 .inputBackground {
   background-color: green;
+}
+.submitVerseButton {
+  /* background-color: black; */
+  border-color: black;
+  /* color: white; */
+  font-size: 22px;
+  padding : 10px;
+  transform: translateX(-50%);
 }
 #submitButton {
   /* background-color: black; */

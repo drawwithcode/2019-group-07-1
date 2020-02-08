@@ -1,4 +1,5 @@
 var textInput = [];
+var submitVerseButton = [];
 //var textInput2;
 var submitButton;
 var verse = [];
@@ -20,6 +21,18 @@ var socket;
 var blockUsers;
 var myId = [];
 var clientsId = [];
+var numberOfClients = 0;
+
+var verse_0 = true;
+var verse_1 = false;
+var verse_2 = false;
+var verse_3 = false;
+var verse_4 = false;
+var verse_5 = false;
+var verse_6 = false;
+var verse_7 = false;
+var verse_8 = false;
+
 
 
 //https://api.datamuse.com/words?sp=intelligent&max=1&md=s  // conteggio sillabe
@@ -39,7 +52,12 @@ function setup() {
     textInput[i].addClass('textInput');
     textInput[i].input(myInputEvent);
     textInput[i].parent(poemContainer);
-    textInput[i].position(poemContainer.width / 2, i * 80);
+    textInput[i].position(poemContainer.width / 2, i * height / 13.5);
+
+    submitVerseButton[i] = createButton('submit');
+    submitVerseButton[i].addClass('submitVerseButton');
+    submitVerseButton[i].parent(poemContainer);
+    submitVerseButton[i].position(poemContainer.width + 100, i * height / 13.5);
   }
 
   // textInput = createInput();
@@ -57,8 +75,6 @@ function setup() {
 
   ///////////////////////////// sending to each client its socket.id for debug
 
-
-
   socket.on("hereIsYourID", getMyID);
 
   function getMyID(receivedData) {
@@ -72,10 +88,12 @@ function setup() {
   function getMyUpdate(receivedData) {
     //receivedData.clients.push(clientsId);
     clientsId = receivedData.clients;
+    numberOfClients = receivedData.n_clients;
     // console.log(receivedData.clients);
     // console.log("clients: \n" + receivedData.clients);
     // console.log(clientsId);
     // console.log(clientsId[0]);
+    //console.log(receivedData.n_clients);
   }
   ///////////////////////////// the user ONE send a message that blocks the others users from writing
 
@@ -267,14 +285,26 @@ function cleanInputText(number) {
   textInput[number].html("");
 }
 
-function hideTestInput() {
+function hideTextInput() {
   for (var i = 0; i < 9; i++) {
     textInput[i].hide();
   }
 }
-function showTestInput() {
+
+function showTextInput() {
   for (var i = 0; i < 9; i++) {
     textInput[i].show();
+  }
+}
+
+function showCurrentTextInput(verseToShow) {
+  // show the right textInput based on the turn, hide the rest
+  textInput[verseToShow].show();
+  for (var i = verseToShow - 1; i >= 0; i--) {
+    textInput[i].hide();
+  }
+  for (var i = verseToShow + 1; i < 9; i++) {
+    textInput[i].hide();
   }
 }
 
@@ -288,17 +318,63 @@ function draw() {
 
   socket.emit('mySocketid', mySocketid);
 
+  socket.emit('startRound', {
+    msg: 0
+  });
 
 
-    socket.emit('startRound', {msg: 0});
 
+  //console.log('Number of clients: ' + numberOfClients + '\nmyId: \n' + myId + '\nclientsId[0]: \n' + clientsId[0]);
+  // if (myId != clientsId[0]) {
+  //   hideTextInput();
+  // }
+  //
+  // else {
+  //   showTextInput();
+  // };
 
-
-  console.log('myId: \n' + myId + '\nclientsId[0]: \n' + clientsId[0]);
   if (myId != clientsId[0]) {
-    hideTestInput();
+    hideTextInput();
+    console.log('not my turn');
+  } else if (myId == clientsId[0] && verse_0 == true) {
+    showCurrentTextInput(0);
+
+    console.log('verse 0');
+  } else if (myId == clientsId[0] && verse_1 == true) {
+    showCurrentTextInput(1);
+
+    console.log('verse 1');
+  } else if (myId == clientsId[0] && verse_2 == true) {
+    showCurrentTextInput(2);
+
+    console.log('verse 2');
+  } else if (myId == clientsId[0] && verse_3 == true) {
+    showCurrentTextInput(3);
+
+    console.log('verse 3');
+  } else if (myId == clientsId[0] && verse_4 == true) {
+    showCurrentTextInput(4);
+
+    console.log('verse 4');
+  } else if (myId == clientsId[0] && verse_5 == true) {
+    showCurrentTextInput(5);
+
+    console.log('verse 5');
+  } else if (myId == clientsId[0] && verse_6 == true) {
+    showCurrentTextInput(6);
+
+    console.log('verse 6');
+  } else if (myId == clientsId[0] && verse_7 == true) {
+    showCurrentTextInput(7);
+
+    console.log('verse 7');
+  } else if (myId == clientsId[0] && verse_8 == true) {
+    showCurrentTextInput(8);
+
+    console.log('verse 8');
   } else {
-    showTestInput();
+    //showTextInput();
+    console.log('dd');
   };
 
 
