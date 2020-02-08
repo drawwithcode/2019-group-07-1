@@ -76,9 +76,9 @@ io.sockets.on('connection', function(socket) {
 
     });
 
-    socket.on('terminate', function() {
-      socket.disconnect(0);
-    });
+    // socket.on('terminate', function() {
+    //   socket.disconnect(0);
+    // });
 
     io.emit('clientsUpdate', {
       clients: clients,
@@ -105,12 +105,11 @@ io.sockets.on('connection', function(socket) {
 
 
 
-  // allClients[0].on('startRound', roundOne);
-  //
-  //
-  // function roundOne(receivedData) {
-  //   allClients[0].broadcast.emit("roundOneBroadcast", receivedData);
-  // }
+  socket.on('startNextRound', nextRound);
+
+  function nextRound(receivedData) {
+    io.sockets.emit("nextRound", receivedData);
+  }
 
 
   // socket.on("ddd", dddMessage);
