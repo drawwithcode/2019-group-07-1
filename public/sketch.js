@@ -70,12 +70,12 @@ function setup() {
     submitVerseButton[i] = createButton('submit');
     submitVerseButton[i].addClass('submitVerseButton');
     submitVerseButton[i].parent(poemContainer);
-    submitVerseButton[i].position(poemContainer.width + width/19.2, i * height / 13.5);
+    submitVerseButton[i].position(poemContainer.width + width / 19.2, i * height / 13.5);
 
     rhymeScheme[i] = createDiv();
     rhymeScheme[i].addClass('rhymeScheme');
     rhymeScheme[i].parent(poemContainer);
-    rhymeScheme[i].position(- width/19.2, i * height / 13.5);
+    rhymeScheme[i].position(-width / 19.2, i * height / 13.5);
   }
 
   submitVerseButton[0].mouseClicked(submitVerse_0);
@@ -86,6 +86,7 @@ function setup() {
   submitVerseButton[5].mouseClicked(submitVerse_5);
   submitVerseButton[6].mouseClicked(submitVerse_6);
   submitVerseButton[7].mouseClicked(submitVerse_7);
+  submitVerseButton[8].mouseClicked(submitVerse_8);
 
   rhymeScheme[0].html('A');
   rhymeScheme[1].html('B');
@@ -225,7 +226,27 @@ function setup() {
 
   }
 
-}
+  // Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyCfh_QHd5Gsccp_ZSJkK2eg7mzV6SBioic",
+    authDomain: "online-comedy-poems.firebaseapp.com",
+    databaseURL: "https://online-comedy-poems.firebaseio.com",
+    projectId: "online-comedy-poems",
+    storageBucket: "online-comedy-poems.appspot.com",
+    messagingSenderId: "762689873283",
+    appId: "1:762689873283:web:17b63d304362fa722102b6"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  database = firebase.database();
+
+  var ref = database.ref("lines"); //setting up the lines path
+
+} //// end of setup
+
+
+
+
 
 function turnOneId() {
   turn_0_id = clientsId[0];
@@ -247,7 +268,7 @@ function checkRhyme(currentVerse) {
   //   console.log('no rhymeMatch');
   //   rhymeMatch = false;
   // }
-  console.log('previous verse: \n' + previousOne + '\nlast word_0: ' + previousOne[previousOne.length - 1] + '\nlast word_1: ' +currentOne[currentOne.length - 1] + '\nrhymeMatch: ' + rhymeMatch); //'\nperfect rhymes: \n' + perfectArray[ + '\nhomophones rhymes: \n' + homophonesArray +
+  console.log('previous verse: \n' + previousOne + '\nlast word_0: ' + previousOne[previousOne.length - 1] + '\nlast word_1: ' + currentOne[currentOne.length - 1] + '\nrhymeMatch: ' + rhymeMatch); //'\nperfect rhymes: \n' + perfectArray[ + '\nhomophones rhymes: \n' + homophonesArray +
 }
 
 function getRhymes(word) {
@@ -280,7 +301,7 @@ function homophonesData(data) {
 }
 
 
-
+////////////////////////////// 'A'
 function startTurn_0() {
   verse_0 = true;
 
@@ -299,7 +320,7 @@ function submitVerse_0() {
     });
   }
 }
-
+/////////////////////////////////////////////// 'B'
 function submitVerse_1() {
   if (textInput[1].value() != 0) {
     verse_1 = false;
@@ -310,97 +331,129 @@ function submitVerse_1() {
     });
   }
 }
-///////////////////////////////////////////////////
+/////////////////////////////////////////////////// 'A'
 function submitVerse_2() {
-    submitClicked = true;
-    ok = false;
-    checkRhyme(2);
+  submitClicked = true;
+  ok = false;
+  checkRhyme(2);
 }
-function activeVerse_3(){
+
+function activeVerse_3() {
   textInput[2].removeClass('inputBackground');
-        verse_2 = false;
-        verse_3 = true;
+  verse_2 = false;
+  verse_3 = true;
 
-        socket.emit('startNextRound', {
-          msg: 3
-        });
+  socket.emit('startNextRound', {
+    msg: 3
+  });
 }
-///////////////////////////////////////////
+/////////////////////////////////////////// 'B'
 function submitVerse_3() {
-    submitClicked = true;
-    ok = false;
-    checkRhyme(3);
+  submitClicked = true;
+  ok = false;
+  checkRhyme(3);
 }
-function activeVerse_4() {
-    textInput[3].removeClass('inputBackground');
-    verse_3 = false;
-    verse_4 = true;
 
-    socket.emit('startNextRound', {
-      msg: 4
-    });
+function activeVerse_4() {
+  textInput[3].removeClass('inputBackground');
+  verse_3 = false;
+  verse_4 = true;
+
+  socket.emit('startNextRound', {
+    msg: 4
+  });
 }
-////////////////////////////////////////
+//////////////////////////////////////// 'C'
 function submitVerse_4() {
-    submitClicked = true;
-    ok = false;
-    checkRhyme(4);
-}
-function activeVerse_5() {
-  textInput[4].removeClass('inputBackground');
+  if (textInput[4].value() != 0) {
     verse_4 = false;
     verse_5 = true;
 
     socket.emit('startNextRound', {
       msg: 5
     });
+  }
 }
-//////////////////////////////////////
+////////////////////////////////////// 'B'
 function submitVerse_5() {
-    submitClicked = true;
-    ok = false;
-    checkRhyme(5);
+  submitClicked = true;
+  ok = false;
+  checkRhyme(5);
 }
+
 function activeVerse_6() {
   textInput[5].removeClass('inputBackground');
-    verse_5 = false;
-    verse_6 = true;
+  verse_5 = false;
+  verse_6 = true;
 
-    socket.emit('startNextRound', {
-      msg: 6
-    });
+  socket.emit('startNextRound', {
+    msg: 6
+  });
 }
-//////////////////////////////////////
+////////////////////////////////////// 'C'
 function submitVerse_6() {
-    submitClicked = true;
-    ok = false;
-    checkRhyme(6);
+  submitClicked = true;
+  ok = false;
+  checkRhyme(6);
 }
+
 function activeVerse_7() {
   textInput[6].removeClass('inputBackground');
-    verse_6 = false;
-    verse_7 = true;
+  verse_6 = false;
+  verse_7 = true;
 
-    socket.emit('startNextRound', {
-      msg: 7
-    });
+  socket.emit('startNextRound', {
+    msg: 7
+  });
 }
-/////////////////////////////////////
+///////////////////////////////////// 'D'
 function submitVerse_7() {
-    submitClicked = true;
-    ok = false;
-    checkRhyme(7);
-}
-function activeVerse_8() {
-  textInput[7].removeClass('inputBackground');
-    verse_7 = false;
-    verse_8 = true;
+  verse_7 = false;
+  verse_8 = true;
 
-    socket.emit('startNextRound', {
-      msg: 8
-    });
+  socket.emit('startNextRound', {
+    msg: 8
+  });
+}
+////////////////////////////////////// 'C'
+function submitVerse_8() {
+  submitClicked = true;
+  ok = false;
+  checkRhyme(8);
+}
+
+function activeVerse_9() {
+  textInput[8].removeClass('inputBackground');
+  verse_8 = false;
+  //verse_7 = true;
+
+  // socket.emit('startNextRound', {
+  //   msg: 7
+  // });
+  console.log('fine');
+  sendAll();
 }
 /////////////////////////////////////
+
+function sendAll() {
+var ref = database.ref("lines"); //setting up the lines path
+
+// setting the properties of the javascript objects which will compose the data
+var data = {
+
+position: "line1",
+line: textInput[0].value() + '<br>' + textInput[1].value() + '<br>' + textInput[2].value() + '<br>' + '<br>' + textInput[3].value() + '<br>' + textInput[4].value() + '<br>' + textInput[5].value() + '<br>' + '<br>'+ textInput[6].value() + '<br>' + textInput[7].value() + '<br>' + textInput[8].value()
+
+};
+
+var sentLine = ref.push(data, dataSent); //sends the data to database
+//console.log(sentLine.key); //shows the key created for the sent data
+
+function dataSent(err, status) {
+  //console.log(status);
+}
+console.log(data.line);
+}
 function syllablesData(data) {
   dataReceived++;
   var xx = [];
@@ -578,7 +631,7 @@ function draw() {
   //   count: counter
   // });
 
-  console.log('n° clients: \n' + numberOfClients + '\nlist of clients: \n' + clientsId + '\nmyId: \n' + myId + '\ncurrentTurn: ' + currentTurn, '\nturn_0_id = \n' + turn_0_id); // + '\nid_0: \n' + id_0 + '\nid_1: \n' + id_1
+  //console.log('n° clients: \n' + numberOfClients + '\nlist of clients: \n' + clientsId + '\nmyId: \n' + myId + '\ncurrentTurn: ' + currentTurn, '\nturn_0_id = \n' + turn_0_id); // + '\nid_0: \n' + id_0 + '\nid_1: \n' + id_1
   var a, b, c, d, e, f, g, h, i;
 
   // adjust the turn based on the number of connected clients
@@ -834,22 +887,24 @@ function draw() {
       if (perfectArray.some(keyword => currentOne[currentOne.length - 1].includes(keyword)) || homophonesArray.some(keyword => currentOne[currentOne.length - 1].includes(keyword))) {
         ok = true;
         if (currentTurn == 2) {
-            activeVerse_3();
+          activeVerse_3();
+        } else if (currentTurn == 3) {
+          activeVerse_4();
         }
-        else if (currentTurn == 3){
-           activeVerse_4();
+        // else if (currentTurn == 4){
+        //    activeVerse_5();
+        // }
+        else if (currentTurn == 5) {
+          activeVerse_6();
+        } else if (currentTurn == 6) {
+          activeVerse_7();
         }
-        else if (currentTurn == 4){
-           activeVerse_5();
-        }
-        else if (currentTurn == 5){
-           activeVerse_6();
-        }
-        else if (currentTurn == 6){
-           activeVerse_7();
-        }
-        else if (currentTurn == 7){
-           activeVerse_8();
+        // else if (currentTurn == 7){
+        //    activeVerse_8();
+        // }
+        else if (currentTurn == 8) {
+          activeVerse_9();
+          console.log('ciao');
         }
 
         console.log('rhymeMatch');

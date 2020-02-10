@@ -5,6 +5,43 @@
   overflow-x: hidden;
   display: block;
 } */
+body {
+  max-height: 100%;
+  overflow-y: hidden;
+  max-width: 100%;
+  overflow-x: hidden;
+  display: block;
+  font-size: 16px;
+}
+@font-face {
+  font-family: 'DonegalOne-Regular';
+  src: url('assets/DonegalOne-Regular.otf')  format('truetype');
+}
+/* MAIN MENU */
+#tutorialButton {
+  font-family: 'DonegalOne-Regular';
+  background-color: transparent;
+  border: solid 0.3vw;
+  border-color: #C05746;
+  /* color: white; */
+  font-size: 2.1875em;
+  width: 12.5vw;
+  height: 8.6vh;
+  transform: translateX(-50%);
+}
+
+#button {
+  font-family: 'DonegalOne-Regular';
+  background-color: transparent;
+  border: solid 0.3vw;
+  border-color: #C05746;
+  /* color: white; */
+  font-size: 2.1875em;
+  width: 23.4vw;
+  height: 11.11vh;
+  transform: translateX(-50%);
+}
+/* WRITE THE POETRY */
 #poemContainer {
   /* background-color: red; */
   position: absolute;
