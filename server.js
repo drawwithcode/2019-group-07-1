@@ -85,16 +85,17 @@ io.sockets.emit('turnIds', {
       // allClients.splice(i, 1);
 
 
-
+      var i = clients.indexOf(socket);
+      clients.splice(i, 1);
 
         //console.log(receivedData);
-        if (socket >= clients[receiveData.msg]) {
-          var i = clients.indexOf(socket);
-          clients.splice(i, 1);
-        } else if (socket < clients[receiveData.msg]) {
-          clients.splice(i, 1, "ciao");
-        }
-        console.log('boh: ' + clients[receiveData.msg]);
+        // if (socket >= clients[receiveData.msg]) {
+        //   var i = clients.indexOf(socket);
+        //   clients.splice(i, 1);
+        // } else if (socket < clients[receiveData.msg]) {
+        //   clients.splice(i, 1, "ciao");
+        // }
+        // console.log('boh: ' + clients[receiveData.msg]);
 
 
         io.emit('clientsUpdate', {
