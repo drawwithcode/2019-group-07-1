@@ -17,7 +17,7 @@ var tutorialString = 'hello world!';
 
 function preload() {
   backgroundImage = loadImage("./assets/menù_image.png");
-  //dante = loadImage("./assets/dante.png");
+  //dante = loadImage("./assets/Dante.png");
 }
 
 function setup() {
