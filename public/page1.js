@@ -52,7 +52,7 @@ function setup() {
   tutorialBox.id('tutorialBox');
   tutorialBox.hide();
 
-  dante = createImg("./assets/dante.png");
+  dante = createImg("./assets/dante.png", 'anonymous');
   dante.parent(tutorialBox);
   dante.id('danteImage');
 
