@@ -15,31 +15,86 @@ body {
 }
 @font-face {
   font-family: 'DonegalOne-Regular';
-  src: url('assets/DonegalOne-Regular.otf')  format('truetype');
+  src: url('assets/DonegalOne-Regular.ttf')  format('truetype');
 }
 /* MAIN MENU */
 #tutorialButton {
+  position: absolute;
+  left: 50%;
+  top: 47.2%;
   font-family: 'DonegalOne-Regular';
-  background-color: transparent;
+  background-color: #e9dec6;
   border: solid 0.3vw;
   border-color: #C05746;
-  /* color: white; */
   font-size: 2.1875em;
   width: 12.5vw;
   height: 8.6vh;
   transform: translateX(-50%);
 }
 
-#button {
+#galleryButton {
+  position: absolute;
+  left: 21.7%;
+  top: 66%;
   font-family: 'DonegalOne-Regular';
-  background-color: transparent;
+  background-color: #e9dec6;
   border: solid 0.3vw;
   border-color: #C05746;
-  /* color: white; */
   font-size: 2.1875em;
-  width: 23.4vw;
-  height: 11.11vh;
+  width: 19vw;
+  height: 10vh;
   transform: translateX(-50%);
+}
+#poemButton {
+  position: absolute;
+  right: 2.5%;
+  top: 66%;
+  font-family: 'DonegalOne-Regular';
+  background-color: #e9dec6;
+  border: solid 0.3vw;
+  border-color: #C05746;
+  font-size: 2.1875em;
+  width: 19vw;
+  height: 10vh;
+  transform: translateX(-50%);
+}
+.brownColor {
+  color: #4e301f;
+}
+.redColor {
+  color: #C05746;
+}
+#tutorialBox {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  font-family: 'DonegalOne-Regular';
+  background-color: #e9dec6;
+  border: solid 0.3vw;
+  border-color: #C05746;
+  font-size: 2.1875em;
+  width: 76vw;
+  height: 73vh;
+  transform: translate(-50%, -50%);
+}
+#backTutorialButton {
+  position: absolute;
+  right: 1%;
+  bottom: 4%;
+  font-family: 'DonegalOne-Regular';
+  background-color: #e9dec6;
+  border: solid 0.25vw;
+  border-color: #C05746;
+  font-size: 0.8em;
+  width: 6.5vw;
+  height: 5vh;
+  transform: translate(-50%, -50%);
+}
+#danteImage {
+  position: relative;
+  left: 22%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 /* WRITE THE POETRY */
 #poemContainer {
