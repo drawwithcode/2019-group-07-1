@@ -6,7 +6,7 @@
   display: block;
 } */
 #poemContainer {
-  background-color: red;
+  /* background-color: red; */
   position: absolute;
   top: 50%;
   left: 50%;
@@ -17,6 +17,8 @@
 .textInput {
   /* background-color: black;
   border-color: black; */
+  background-color: transparent;
+  border-color:transparent;
   border-bottom-color: black;
   padding-bottom: 15px;
   color:black;
@@ -29,7 +31,7 @@
   transform: translateX(-50%);
 }
 .inputBackground {
-  background-color: green;
+  color: red;
 }
 .submitVerseButton {
   /* background-color: black; */
@@ -38,6 +40,15 @@
   font-size: 22px;
   padding : 10px;
   height: 2vh;
+  transform: translateX(-50%);
+}
+.rhymeScheme {
+  /* background-color: black; */
+  border-color: black;
+  /* color: white; */
+  font-size: 30px;
+  padding : 10px;
+  height: 3vh;
   transform: translateX(-50%);
 }
 #submitButton {

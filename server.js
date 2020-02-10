@@ -30,16 +30,30 @@ var io = socket(server);
 //   }
 // }
 
-
+var turn_0_id;
+var first = true;
+var turn_1_id;
+var second = true;
 
 io.sockets.on('connection', function(socket) {
   //console.log(socket);
   //var allClients = [];
   var connectionsLimit = 4;
 
+ if (first == true) {
+    turn_0_id = socket.id;
+    first = false;
+ }
+if (io.engine.clientsCount > 1 && second == true) {
+    turn_1_id = socket.id;
+    second = false;
+ }
 
 
-  //allClients.push(socket);
+io.sockets.emit('turnIds', {
+  t_0: turn_0_id,
+  t_1: turn_1_id
+});
 
   // limit to the connections number
   if (io.engine.clientsCount > connectionsLimit) {
@@ -91,25 +105,38 @@ io.sockets.on('connection', function(socket) {
       });
     });
 
+    socket.on('startFirstRound', firstRound);
+
+    function firstRound(receivedData) {
+      io.sockets.emit("nextRound", receivedData);
+    }
+
+    socket.on('sendCurrentTurn', nextRound);
+    socket.on('startNextRound', nextRound);
+
+    function nextRound(receivedData) {
+      io.sockets.emit("nextRound", receivedData);
+      //console.log(receivedData);
+    }
+
     console.log('clients[0]: ' + clients[0]);
     console.log('socketid: ' + socket.id);
     console.log('clients: ' + clients);
     console.log('number of clients: ' + io.engine.clientsCount);
+    console.log('turn_0_id: ' + turn_0_id + '\nturn_1_id: ' + turn_1_id);
   });
 
   // for (var i = 0; i < allClients.length; i++) {
   //   console.log("allClients: " + allClients[i].id);
   // }
 
+  // socket.on('counter', function (receivedData) {
+  //   io.sockets.emit("currentCounter", receivedData);
+  // });
 
 
 
 
-  socket.on('startNextRound', nextRound);
-
-  function nextRound(receivedData) {
-    io.sockets.emit("nextRound", receivedData);
-  }
 
 
   // socket.on("ddd", dddMessage);
