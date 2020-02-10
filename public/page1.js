@@ -53,12 +53,12 @@ function setup() {
   tutorialBox.id('tutorialBox');
   tutorialBox.hide();
 
-  // danteImage = createImg("assets/dante.png");
-  // danteImage.parent(tutorialBox);
-  // danteImage.id('danteImage');
-  danteImage = select("#danteImage");
+  danteImage = createImg("assets/Dante.png");
   danteImage.parent(tutorialBox);
   danteImage.id('danteImage');
+  // danteImage = select("#danteImage");
+  // danteImage.parent(tutorialBox);
+  // danteImage.id('danteImage');
 
   backTutorialButton = createButton('Back');
   backTutorialButton.parent(tutorialBox);
