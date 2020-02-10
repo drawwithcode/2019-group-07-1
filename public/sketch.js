@@ -578,7 +578,7 @@ function draw() {
   //   count: counter
   // });
 
-  //console.log('n° clients: \n' + numberOfClients + '\nlist of clients: \n' + clientsId + '\nmyId: \n' + myId + '\ncurrentTurn: ' + currentTurn, '\nturn_0_id = \n' + turn_0_id); // + '\nid_0: \n' + id_0 + '\nid_1: \n' + id_1
+  console.log('n° clients: \n' + numberOfClients + '\nlist of clients: \n' + clientsId + '\nmyId: \n' + myId + '\ncurrentTurn: ' + currentTurn, '\nturn_0_id = \n' + turn_0_id); // + '\nid_0: \n' + id_0 + '\nid_1: \n' + id_1
   var a, b, c, d, e, f, g, h, i;
 
   // adjust the turn based on the number of connected clients
@@ -669,101 +669,101 @@ function draw() {
     if (myId != clientsId[a]) {
       notMyTurn(0);
       submitVerseButton[0].hide();
-      console.log('not my turn');
+      // abbe console.log('not my turn');
     } else if (myId == clientsId[a]) {
       myTurn(0);
       socket.emit('sendCurrentTurn', {
         msg: currentTurn
       });
-      console.log('verse 0');
+      // abbe console.log('verse 0');
     }
   } else if (verse_1 == true) {
     if (myId != clientsId[b]) {
       notMyTurn(1);
-      console.log('not my turn');
+      // abbe console.log('not my turn');
     } else if (myId == clientsId[b]) {
       myTurn(1);
       socket.emit('sendCurrentTurn', {
         msg: currentTurn
       });
-      console.log('verse 1');
+      // abbe console.log('verse 1');
     }
   } else if (verse_2 == true) {
     if (myId != clientsId[c]) {
       notMyTurn(2);
-      console.log('not my turn');
+      // abbe console.log('not my turn');
     } else if (myId == clientsId[c]) {
       myTurn(2);
       socket.emit('sendCurrentTurn', {
         msg: currentTurn
       });
-      console.log('verse 2');
+      // abbe console.log('verse 2');
     }
   } else if (verse_3 == true) {
     if (myId != clientsId[d]) {
       notMyTurn(3);
-      console.log('not my turn');
+      // abbe console.log('not my turn');
     } else if (myId == clientsId[d]) {
       myTurn(3);
       socket.emit('sendCurrentTurn', {
         msg: currentTurn
       });
-      console.log('verse 3');
+      // abbe console.log('verse 3');
     }
   } else if (verse_4 == true) {
     if (myId != clientsId[e]) {
       notMyTurn(4);
-      console.log('not my turn');
+      // abbe console.log('not my turn');
     } else if (myId == clientsId[e]) {
       myTurn(4);
       socket.emit('sendCurrentTurn', {
         msg: currentTurn
       });
-      console.log('verse 4');
+      // abbe console.log('verse 4');
     }
   } else if (verse_5 == true) {
     if (myId != clientsId[f]) {
       notMyTurn(5);
-      console.log('not my turn');
+      // abbe console.log('not my turn');
     } else if (myId == clientsId[f]) {
       myTurn(5);
       socket.emit('sendCurrentTurn', {
         msg: currentTurn
       });
-      console.log('verse 5');
+      // abbe console.log('verse 5');
     }
   } else if (verse_6 == true) {
     if (myId != clientsId[g]) {
       notMyTurn(6);
-      console.log('not my turn');
+      // abbe console.log('not my turn');
     } else if (myId == clientsId[g]) {
       myTurn(6);
       socket.emit('sendCurrentTurn', {
         msg: currentTurn
       });
-      console.log('verse 6');
+      // abbe console.log('verse 6');
     }
   } else if (verse_7 == true) {
     if (myId != clientsId[h]) {
       notMyTurn(7);
-      console.log('not my turn');
+      // abbe console.log('not my turn');
     } else if (myId == clientsId[h]) {
       myTurn(7);
       socket.emit('sendCurrentTurn', {
         msg: currentTurn
       });
-      console.log('verse 7');
+      // abbe console.log('verse 7');
     }
   } else if (verse_8 == true) {
     if (myId != clientsId[i]) {
       notMyTurn(8);
-      console.log('not my turn');
+      // abbe console.log('not my turn');
     } else if (myId == clientsId[i]) {
       myTurn(8);
       socket.emit('sendCurrentTurn', {
         msg: currentTurn
       });
-      console.log('verse 8');
+      // abbe console.log('verse 8');
     }
   }
 

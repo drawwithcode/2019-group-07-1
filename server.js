@@ -35,6 +35,8 @@ var first = true;
 var turn_1_id;
 var second = true;
 
+var currentTurn = -1;
+
 io.sockets.on('connection', function(socket) {
   //console.log(socket);
   //var allClients = [];
@@ -74,21 +76,45 @@ io.sockets.emit('turnIds', {
 
 
 
+
+
     socket.on('disconnect', function() {
       console.log(socket.id + ' Got disconnect!');
 
       // var i = allClients.indexOf(socket);
       // allClients.splice(i, 1);
-      var i = clients.indexOf(socket);
-      clients.splice(i, 1);
 
 
-      io.emit('clientsUpdate', {
-        clients: clients,
-        n_clients: io.engine.clientsCount
-      });
+
+
+        //console.log(receivedData);
+        if (socket >= clients[receiveData.msg]) {
+          var i = clients.indexOf(socket);
+          clients.splice(i, 1);
+        } else if (socket < clients[receiveData.msg]) {
+          clients.splice(i, 1, "ciao");
+        }
+        console.log('boh: ' + clients[receiveData.msg]);
+
+
+        io.emit('clientsUpdate', {
+          clients: clients,
+          n_clients: io.engine.clientsCount
+        });
+        //io.sockets.emit("newArrayOfClients", receivedData);
+
+
+      // var i = clients.indexOf(socket);
+      // clients.splice(i, 1);
+      //
+      //
+      // io.emit('clientsUpdate', {
+      //   clients: clients,
+      //   n_clients: io.engine.clientsCount
+      // });
 
     });
+
 
     // socket.on('terminate', function() {
     //   socket.disconnect(0);
@@ -116,7 +142,8 @@ io.sockets.emit('turnIds', {
 
     function nextRound(receivedData) {
       io.sockets.emit("nextRound", receivedData);
-      //console.log(receivedData);
+      currentTurn = receivedData.msg;
+      console.log(currentTurn);
     }
 
     console.log('clients[0]: ' + clients[0]);
