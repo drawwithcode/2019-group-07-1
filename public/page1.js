@@ -17,7 +17,7 @@ var tutorialString = 'hello world!';
 
 function preload() {
   backgroundImage = loadImage("./assets/menù_image.png");
-  dante = loadImage("./assets/dante.png");
+  //dante = loadImage("./assets/dante.png");
 }
 
 function setup() {
@@ -53,7 +53,10 @@ function setup() {
   tutorialBox.id('tutorialBox');
   tutorialBox.hide();
 
-  danteImage = createImg("assets/dante.png");
+  // danteImage = createImg("assets/dante.png");
+  // danteImage.parent(tutorialBox);
+  // danteImage.id('danteImage');
+  danteImage = select("#danteImage");
   danteImage.parent(tutorialBox);
   danteImage.id('danteImage');
 
