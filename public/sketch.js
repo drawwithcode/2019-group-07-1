@@ -251,8 +251,8 @@ function checkRhyme(currentVerse) {
 }
 
 function getRhymes(word) {
-  var urlPerfect = 'https://api.datamuse.com/words?rel_rhy=' + word;
-  var urlHomophones = 'https://api.datamuse.com/words?rel_hom=' + word;
+  var urlPerfect = 'http://api.datamuse.com/words?rel_rhy=' + word;
+  var urlHomophones = 'http://api.datamuse.com/words?rel_hom=' + word;
 
   loadJSON(urlPerfect, perfectData);
   loadJSON(urlHomophones, homophonesData);
