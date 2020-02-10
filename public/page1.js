@@ -1,6 +1,7 @@
 //// images
 var backgroundImage;
 var dante;
+var danteImage;
 
 // buttons
 var tutorialButton;
@@ -10,7 +11,7 @@ var tutorialBox;
 var backTutorialButton;
 
 
-var socket;
+//var socket;
 
 var tutorialString = 'hello world!';
 
@@ -22,7 +23,7 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
-  socket = io();
+  //socket = io();
 
   galleryButton = createButton('Go to the Gallery');
   galleryButton.id('galleryButton');
@@ -52,9 +53,9 @@ function setup() {
   tutorialBox.id('tutorialBox');
   tutorialBox.hide();
 
-  dante = createImg("./assets/dante.png", 'anonymous');
-  dante.parent(tutorialBox);
-  dante.id('danteImage');
+  danteImage = createImg("assets/dante.png");
+  danteImage.parent(tutorialBox);
+  danteImage.id('danteImage');
 
   backTutorialButton = createButton('Back');
   backTutorialButton.parent(tutorialBox);
@@ -96,6 +97,8 @@ function draw() {
   imageMode(CENTER);
   var scalefactor = 1930000;
   image(backgroundImage, width / 2, height / 2, backgroundImage.width / scalefactor * (width * height), backgroundImage.height / scalefactor * (width * height));
+
+  // image(dante, width / 2, height / 2, dante.width / 2000000 * (width * height), dante.height / 2000000 * (width * height));
 
 }
 
