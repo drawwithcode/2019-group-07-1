@@ -4,7 +4,9 @@ By Luca Bernardi, Gianluca Locatelli, Lucia Mazzanti
 [Creative Coding 2019/2020](https://drawwithcode.github.io/2019/)
 Politecnico di Milano - Scuola del Design
 Faculty: Michele Mauri, Andrea Benedetti
+
 ![](https://i.imgur.com/ZSphSNn.png)
+
 # Project idea
 At the beginning, inspired by the game of the cigarette, we wanted to develop a site where people could write fun sentences together just to pass time. Then, we thought of Dantedì, a day of the year dedicated to the great figure of Dante Alighieri, so we decided to design a site in honor of him to remember this important figure, to spread the Italian literature of 1200 and to make people interested in it. To do that we designed a site where people could write poems together in "terza rima" and also read other people’s poems. 
 
@@ -17,12 +19,17 @@ Considering that the site have been made in honor of Dante, the poems have to be
 The site is designed for computer because writings serious poems takes time and we imagine the users writing while sitting on chairs in their houses with a cup of tea.
 
 # Design challenges
+
+![](https://i.imgur.com/v79oQAq.png)
+
 In the first page we have the main menu with three buttons: they have been designed differently from the title, to allow users to understand that they are of a different category: with one category you can interact (the one with red borders), while with the other one you can't (brown borders). In the “Write a poem” section, on the center you have a big parchment with nine empty lines with on the left a scheme of the "terza rima" which is clearly a sign for the user to type something, following the scheme. Then there’s a column of feathers that are as much as the number of the writers (maximum three for poem) and one of them is pointed out with a "YOU" written at the bottom to show the user when it's is his turn. In the gallery section instead you have all the poems, one for parchment, ordered in chronological time, to show a list of all the poems.
 To follow the style of La Divina Commedia we decided to use a handmade design with brown colors, as those used on 1200’s books.  So all the drawings were made by hand using photoshop.
 The elements are clearly not innovative, because we were inspired by 1200s style, so we used a simple style for this reason, and also to facilitate the users on understanding the functioning of the site.
 
 # Code challenges
+
 ![](https://i.imgur.com/56M4Dgs.png)
+
 One of the most difficult challenge to face was to build the rhyme section; to check that two verses are in rhyme we used datamuse.api, which allows us (among the many features that the service has) to obtain a JSON containing an array of the words which rhyme with a certain word. In the english language there are the perfect rhymes, but also the homophones, that are words with the same sound but different spelling. For this reason we ask to the api both for an array of the words in perfect rhyme and an array with the homophones words. After that we make a text comparison between the last word of the current verse with the the arrays of the last word of the corresponding previous verse.
 ``` javascript
 function checkRhyme(currentVerse) {
