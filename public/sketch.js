@@ -90,8 +90,8 @@ function setup() {
     submitVerseButton[i] = createButton('Send');
     submitVerseButton[i].addClass('submitVerseButton');
     submitVerseButton[i].addClass('responsive');
-    submitVerseButton[i].parent(submitContainer);
-    //submitVerseButton[i].position(poemContainer.width + width / 19.2, i * height / 13.5);
+    submitVerseButton[i].parent(poemContainer);
+    submitVerseButton[i].position(poemContainer.width + width / 19.2, i * height / 13.5);
 
     rhymeScheme[i] = createDiv();
     rhymeScheme[i].parent(lettersContainer);
@@ -102,23 +102,23 @@ function setup() {
   }
   for (var i = 0; i < 3; i++) {
     textInput[i].style('margin-bottom: 1.5vh; margin-left: 23vw');
-    submitVerseButton[i].style('margin-bottom: 0.5vh');
+    // submitVerseButton[i].style('margin-bottom: 0.5vh');
     rhymeScheme[i].style('margin-bottom: 2.5vh');
   }
   textInput[3].style('margin-top: 2vh');
-  submitVerseButton[3].style('margin-top: 1.7vh');
+  // submitVerseButton[3].style('margin-top: 1.7vh');
   rhymeScheme[3].style('margin-top: 4.7vh');
   for (var i = 3; i < 6; i++) {
     textInput[i].style('margin-bottom: 1.5vh; margin-left: 23vw');
-    submitVerseButton[i].style('margin-bottom: 0.5vh');
+    // submitVerseButton[i].style('margin-bottom: 0.5vh');
     rhymeScheme[i].style('margin-bottom: 2.5vh');
   }
   textInput[6].style('margin-top: 2vh;');
-  submitVerseButton[6].style('margin-top: 1.7vh');
+  // submitVerseButton[6].style('margin-top: 1.7vh');
   rhymeScheme[6].style('margin-top: 4.4vh');
   for (var i = 6; i < 9; i++) {
     textInput[i].style('margin-bottom: 1.5vh; margin-left: 23vw');
-    submitVerseButton[i].style('margin-bottom: 0.5vh');
+    // submitVerseButton[i].style('margin-bottom: 0.5vh');
     rhymeScheme[i].style('margin-bottom: 2.5vh');
   }
 
