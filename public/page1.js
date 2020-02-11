@@ -1,6 +1,6 @@
 //// images
 var backgroundImage;
-var dante;
+//var dante;
 var danteImage;
 
 // buttons
@@ -24,6 +24,11 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
 
   //socket = io();
+
+  menùBackground = createImg('./assets/menù_image.png');
+  menùBackground.id('menùBackground');
+  menùBackground.class('responsive');
+  menùBackground.parent(backgroundContainer);
 
   galleryButton = createButton('Go to the Gallery');
   galleryButton.id('galleryButton');
@@ -52,10 +57,12 @@ function setup() {
   tutorialBox = createDiv();
   tutorialBox.id('tutorialBox');
   tutorialBox.hide();
+  tutorialBox.class('responsive');
 
   danteImage = createImg("assets/Dante.png");
   danteImage.parent(tutorialBox);
   danteImage.id('danteImage');
+  danteImage.class('responsive');
   // danteImage = select("#danteImage");
   // danteImage.parent(tutorialBox);
   // danteImage.id('danteImage');
@@ -76,6 +83,7 @@ function changeTextColor() {
   this.removeClass('brownColor');
   this.addClass('redColor');
 }
+
 function recoverColor() {
   this.removeClass('redColor');
   this.addClass('brownColor');
@@ -92,6 +100,7 @@ function openGalleryPage() {
 function openTutorial() {
   tutorialBox.show();
 }
+
 function backFromTutorial() {
   tutorialBox.hide();
 }

@@ -1,3 +1,5 @@
+var writePoemBackground;
+
 var textInput = [];
 var submitVerseButton = [];
 var rhymeScheme = [];
@@ -49,13 +51,22 @@ var start = true;
 //https://api.datamuse.com/words?sp=intelligent&max=1&md=s  // conteggio sillabe
 
 function preload() {
-  // put preload code here
+  //writePoemBackground = loadImage("./assets/writePoemBackground.png");
 }
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
+
+
+
   poemContainer = select('#poemContainer');
+
+
+    writePoemBackground = createImg('./assets/writePoemBackground.png');
+    writePoemBackground.id('writePoemBackground');
+      writePoemBackground.class('responsive');
+      writePoemBackground.parent(backgroundContainer);
 
 
   for (var i = 0; i < 9; i++) {
@@ -102,6 +113,7 @@ function setup() {
   submitButton.id('submitButton');
   submitButton.parent(poemContainer);
   //submitButton.mouseClicked(submitVerse);
+
 
   socket = io();
 
@@ -600,7 +612,9 @@ function draw() {
   //background(255);
   //text(data.data[0].word, 0, 500);
 
-
+  // imageMode(CENTER);
+  // var scalefactor = 1930000;
+  // image(backgroundImage, width / 2, height / 2, backgroundImage.width / scalefactor * (width * height), backgroundImage.height / scalefactor * (width * height));
 
   var mySocketid = {
     msg: 'tell me my socket.id'

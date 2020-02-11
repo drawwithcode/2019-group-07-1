@@ -17,7 +17,13 @@ body {
   font-family: 'DonegalOne-Regular';
   src: url('assets/DonegalOne-Regular.ttf')  format('truetype');
 }
-/* MAIN MENU */
+/* ------------------------MAIN MENU -------------------------*/
+#menùBackground {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
 #tutorialButton {
   position: absolute;
   left: 50%;
@@ -94,9 +100,31 @@ body {
   position: relative;
   left: 22%;
   top: 50%;
+  width: 25.3vw;
+  /* height: 56.48vh; */
+  /* width: 486px;
+  height: 610px; */
   transform: translate(-50%, -50%);
 }
-/* WRITE THE POETRY */
+.responsive {
+  max-width: 100%;
+  height: auto;
+}
+/* <------------------------ WRITE THE POETRY --------------------------> */
+#writePoemBackground {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+#backgroundContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100vw;
+  height: 100vh;
+  transform: translate(-50%,-50%);
+}
 #poemContainer {
   /* background-color: red; */
   position: absolute;
@@ -112,7 +140,7 @@ body {
   background-color: transparent;
   border-color:transparent;
   border-bottom-color: black;
-  padding-bottom: 15px;
+  /* padding-bottom: 15px; */
   color:black;
   font-size: 20px;
   /* position: absolute;
@@ -130,7 +158,7 @@ body {
   border-color: black;
   /* color: white; */
   font-size: 22px;
-  padding : 10px;
+  /* padding : 10px; */
   height: 2vh;
   transform: translateX(-50%);
 }
@@ -139,7 +167,7 @@ body {
   border-color: black;
   /* color: white; */
   font-size: 30px;
-  padding : 10px;
+  /* padding : 10px; */
   height: 3vh;
   transform: translateX(-50%);
 }
@@ -148,7 +176,7 @@ body {
   border-color: black;
   /* color: white; */
   font-size: 22px;
-  padding : 10px;
+  /* padding : 10px; */
   position: absolute;
   top: 110%;
   left: 100%;
