@@ -22,7 +22,7 @@ The site is designed for computer because writings serious poems takes time and 
 
 ![](https://i.imgur.com/v79oQAq.png)
 
-In the first page we have the main menu with three buttons: they have been designed differently from the title, to allow users to understand that they are of a different category: with one category you can interact (the one with red borders), while with the other one you can't (brown borders). In the “Write a poem” section, on the center you have a big parchment with nine empty lines with on the left a scheme of the "terza rima" which is clearly a sign for the user to type something, following the scheme. Then there’s a column of feathers that are as much as the number of the writers (maximum three for poem) and one of them is pointed out with a "YOU" written at the bottom to show the user when it's is his turn. In the gallery section instead you have all the poems, one for parchment, ordered in chronological time, to show a list of all the poems.
+In the first page we have the main menu with three buttons: they have been designed differently from the title, to allow users to understand that they are of a different category: with one category you can interact (the one with red borders), while with the other one you can't (brown borders). In the “Write a poem” section, on the center you have a big parchment with nine empty lines with on the left a scheme of the "terza rima" which is clearly a sign for the user to type something, following the scheme. Then there’s a column of feathers that are as much as the number of the writers (maximum three for poem) and one of them is pointed out with a "YOU" written at the bottom to show the user when it's is his turn. In the gallery section instead you have all the poems, one for parchment, ordered in chronological time, to show a list of all the poems. There's also a tutorial to explain the user how the app works.
 To follow the style of La Divina Commedia we decided to use a handmade design with brown colors, as those used on 1200’s books.  So all the drawings were made by hand using photoshop.
 The elements are clearly not innovative, because we were inspired by 1200s style, so we used a simple style for this reason, and also to facilitate the users on understanding the functioning of the site.
 
@@ -216,9 +216,7 @@ function gotData(data) { //data is what is being retrieved from the database
     poemsList.parent("linkParent");
 
     poemLink.mousePressed(goToPoem);
-
-
-
+    
   }
 
 }
@@ -277,7 +275,4 @@ Instead, the visual inspiration, has been books of 1200s, written by hand and wi
 
 - [Datamuse API](https://www.datamuse.com/api/), to check for the correctness of rhymes also using homophones
 - [Firebase](https://firebase.google.com/?hl=it), to set up a database for our poems
-
-
-This repository is the starting point of the assignments given in the elective course [Creative Coding at Politecnico di Milano](https://www11.ceda.polimi.it/schedaincarico/schedaincarico/controller/scheda_pubblica/SchedaPublic.do?&evn_default=evento&c_classe=696598&__pj0=0&__pj1=3ed8420c42c849845b5caa3de626e8fc).
-Browse [this website](https://drawwithcode.github.io/) if you want to know more about it.
+- Font usati: IM FELL DW Pica regular, Donegal One regular
