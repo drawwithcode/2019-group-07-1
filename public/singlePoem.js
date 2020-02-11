@@ -1,14 +1,12 @@
 function setup() {
 
 
-   canvas = createCanvas(200, 200);
+  /* canvas = createCanvas(200, 200);
   background(0);
 
-   canvas.parent('canvascontainer');
+   canvas.parent('canvascontainer');*/
 
-
-
-    // Firebase configuration
+   // Firebase configuration
   var firebaseConfig = {
     apiKey: "AIzaSyCfh_QHd5Gsccp_ZSJkK2eg7mzV6SBioic",
     authDomain: "online-comedy-poems.firebaseapp.com",
@@ -22,67 +20,64 @@ function setup() {
   firebase.initializeApp(firebaseConfig);
   database = firebase.database();
 
-  var ref = database.ref("lines"); //setting up the lines path
-  ref.on("value", gotData, errData); // 2 callback functions
+  var ref = database.ref("lines"); //setting up the lines path in the database
+  //the reference in the database is checked from here onwards,
+  //whenever the value changes, the callbacks are called
+  ref.on("value", gotData, errData);
 
-}// end of setup
+} // end of setup
 
 
 
 function gotData(data) { //"data" argument is what is being retrieved from the database
 
+  // selects all the elements with class listing, which will be the links generated
+  var elts = selectAll(".listing");
 
-/////
+  // removes the previous poem before loading the updated one avoiding carrying over the previous text each time
+/*  for (var i = 0; i < elts.length; i++) {
 
-// selects all the elements with class listing, which will be the links generated
+    elts[i].remove();
 
-var elts = selectAll(".listing");
+  }*/
 
-// removes the previous list before loading the updated one avoiding carrying over the previous links each time
-for (var i = 0; i < elts.length; i++) {
+ // retrieving the unique id of a piece of data from the database passed as variable in the id of the URL
+  var singleKey = getURLParams();
+  var refSingleKey = database.ref("lines/" + singleKey.id);
 
-elts[i].remove();
+  // reads, just when called without keep reading and listening for changes from that moment on (->once),
+  // the value of the given key and then executes callback functions. It is a check of existence which triggers callbacks
+  refSingleKey.once("value", oneLine, errData);
 
-}
+  function oneLine(data) {
 
-var singleKey = getURLParams();
+    var singlePoemData = data.val(); //extracting the database reference as a javascript object
+    var singlePoem = singlePoemData.line; //accessing the line property
+    var poemTitle = singlePoemData.title; //accessing the title property
 
-var refSingleKey = database.ref("lines/" + singleKey.id );
+//creating a container for the whole poem, with title and lines
+// the class "listing" is used just to identify the elements
+    var poemsList = createElement("div", "");
+    poemsList.class("listing");
 
-// reads, just when called without keep reading and listening for changes from that moment on (->once),
-// the value of the given key and then executes callback functions. It is a check of existence which triggers callbacks
-refSingleKey.once("value", oneLine, errData);
+    var title = createElement("h1", poemTitle)
+    var poem = createP(singlePoem);
+    poem.class("listing");
 
-function oneLine(data) {
-
-var singlePoemData = data.val();
-var singlePoem = singlePoemData.line;
-
-var poemsList = createElement("div", "");
-poemsList.class("listing");
-var poem = createP(singlePoem);
-poem.parent(poemsList);
-
-poemsList.parent("lineslist");
-console.log(singlePoemData);
-}
-
-
-
-
-
-
-
-console.log(key);
+    title.class("listing");
+    title.parent(poemsList);
+    poem.parent(poemsList);
+    poemsList.parent("lineslist");
+  }
 }
 
 function errData(err) {
 
-console.log(err);
+  console.log(err);
 
 }
 
 function draw() {
 
 
-}//end of draw
+} //end of draw

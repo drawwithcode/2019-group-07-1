@@ -10,10 +10,12 @@ var poetryButton;
 var tutorialBox;
 var backTutorialButton;
 
+var tutorialString = 'This is the site with the biggest online Comedy of all times!<br>  It has been designed in honor of Dante Alighieri, but to match<br>  such a great genius we need to join forces and write poems together! Don\’t worry,  of course you can also just read them. Since this project is dedicated to Dante, the poem has to be written in terza rima, which  is a rhyming verse stanza form that consists of an interlocking <br> three-line rhyme scheme that is the following: ABA BCB CDC.<br><br>  To write a poem there must be at least two people with a maximum of three and the number of lines to be written is 9. The person who begins must choose a title and every person before publishing his verse needs to sign himself. Once you published it you have to wait your next turn. When the poem is finished, that is when it has nine lines, it gets automatically published in the gallery.<br> <br>  Have fun!';
+
+
 
 //var socket;
 
-var tutorialString = 'hello world!';
 
 function preload() {
   backgroundImage = loadImage("./assets/menù_image.png");
@@ -58,6 +60,11 @@ function setup() {
   tutorialBox.id('tutorialBox');
   tutorialBox.hide();
   tutorialBox.class('responsive');
+
+
+  tutorialSentence = createP(tutorialString);
+  tutorialSentence.parent(tutorialBox);
+  tutorialSentence.id('tutorialSentence');
 
   danteImage = createImg("assets/Dante.png");
   danteImage.parent(tutorialBox);

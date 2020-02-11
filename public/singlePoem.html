@@ -1,47 +1,89 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0>
-    <style>
-      body {
-        padding: 0;
-        margin: 0;
-      }
 
-/* .listing {
-position: relative;
-left: 33vw;
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0>
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
 
-} */
+      background-image: url(assets/lettura.png);
 
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
 
+    }
 
-.listing {
-  position: relative;
-  left: 33vw;
+#lineslist {
+
+display: inline-block;
+margin-top: 9.26vh;
 }
 
-    </style>
-    <script src="addons/p5.min.js"></script>
-    <script src="addons/p5.sound.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.8.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-database.js"></script>
-    <script src="singlePoem.js"></script>
-  </head>
-  <body>
+    p.listing {
 
-    <div id ="canvascontainer"></div>
+      position: relative;
+      left: 33vw;
+      font-family: 'IMFellDWPica-Regular';
+      font-size: 2vw;
+
+      color: #4e301f;
+
+    }
+
+    h1.listing {
+
+      position: relative;
+      left: 33vw;
+      font-family: 'IMFellDWPica-Regular';
+      font-size: 2vw;
+
+      color: #C05746;
+
+    }
+
+    img {
+
+      max-width: 100%;
+      height: 100%;
+
+    }
+
+    #pageTitle {
+
+      width: 19.9vw;
+      height: 5vw;
+      margin: 1%
+
+    }
+
+  </style>
+  <script src="addons/p5.min.js"></script>
+  <script src="addons/p5.sound.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.8.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-database.js"></script>
+  <script src="singlePoem.js"></script>
+  <link rel = "stylesheet" href = "style.css">
+</head>
+
+<body>
+
+  <!--<div id ="canvascontainer"></div>-->
+
+  <div id="pageTitle">
+    <img src="assets/read a poem.png">
+  </div>
 
 
+    <div id="lineslist">
 
+    </div>
 
+</body>
 
-      <p>
-        <div id="lineslist">
-
-        </div>
-
-  </body>
-  </html>
+</html>

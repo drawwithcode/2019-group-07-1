@@ -40,7 +40,7 @@ body {
   background-color: #e9dec6;
   border: solid 0.3vw;
   border-color: #C05746;
-  font-size: 2.1875em;
+  font-size: 1.82vw;
   width: 12.5vw;
   height: 8.6vh;
   transform: translateX(-50%);
@@ -55,7 +55,8 @@ body {
   background-color: #e9dec6;
   border: solid 0.3vw;
   border-color: #C05746;
-  font-size: 2.1875em;
+  /* 35px */
+  font-size: 1.82vw;
   width: 19vw;
   height: 10vh;
   transform: translateX(-50%);
@@ -70,7 +71,7 @@ body {
   background-color: #e9dec6;
   border: solid 0.3vw;
   border-color: #C05746;
-  font-size: 2.1875em;
+  font-size: 1.82vw;
   width: 19vw;
   height: 10vh;
   transform: translateX(-50%);
@@ -122,6 +123,28 @@ body {
   /* width: 486px;
   height: 610px; */
   transform: translate(-50%, -50%);
+}
+#danteImage {
+  position: relative;
+  left: 22%;
+  top: 50%;
+  width: 25.3vw;
+  /* height: 56.48vh; */
+  /* width: 486px;
+  height: 610px; */
+  transform: translate(-50%, -50%);
+}
+#tutorialSentence {
+  font-family: 'DonegalOne-Regular';
+  position: absolute;
+  right: 10%;
+  top: 31.5%;
+  font-size: 1.04vw; /*20px */
+  width: 36vw;
+  /* height: 56.48vh; */
+  /* width: 486px;
+  height: 610px; */
+  transform: translateY(-50%);
 }
 
 .responsive {
@@ -184,6 +207,7 @@ body {
   /* padding-bottom: 15px; */
   color: black;
   /* font-size: 30px; */
+    font-size: 1.56vw;
   /* position: absolute;
   top: 30%;
   left: 50%; */
@@ -200,6 +224,7 @@ body {
   border-bottom-color: #C05746;
   /* padding-bottom: 15px; */
   color: black;
+      font-size: 1.56vw;
   /* font-size: 30px; */
   /* position: absolute;
   top: 30%;
@@ -219,8 +244,8 @@ body {
   border-color: #C05746;
   padding: 0.26vw 1.48vh; /* 5px 16px*/
   text-align: center;
-  /* color: white; */
-  font-size: 18px;
+  /* font-size: 18px; */
+    font-size: 0.94vw;
   /* padding : 10px; */
   /* width: 20vw;
   height: 2vh; */
@@ -235,7 +260,7 @@ body {
   font-family: 'IMFellDWPica-Regular';
   border-color: black;
   /* color: white; */
-  font-size: 1.875em;
+  font-size: 1.56vw;
   /* padding : 10px; */
   width: 2vw;
   height: 2vh;

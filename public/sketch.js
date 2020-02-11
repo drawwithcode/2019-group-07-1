@@ -8,7 +8,6 @@ var feathers = [];
 var previousOne;
 var currentOne;
 
-//var textInput2;
 var submitButton;
 var verse = [];
 var homophonesArray = [];
@@ -23,6 +22,9 @@ var commaCheck = 0;
 var verse, verse3;
 var submitClicked = false;
 var ok = false;
+
+var wrongRhyme;
+var danteImage;
 
 
 var socket;
@@ -67,6 +69,7 @@ function setup() {
   var submitContainer = select('#submitContainer');
   //submitContainer.addClass('responsive');
   var lettersContainer = select('#lettersContainer');
+  var wrongRhymeContainer = select('#lettersContainer');
 
 
   writePoemBackground = createImg('./assets/writePoemBackground.png');
@@ -81,7 +84,7 @@ function setup() {
   titleTextInput.parent(titleContainer);
   titleTextInput.attribute('placeholder', 'Type the Title');
   titleTextInput.style('position: absolute; top: -17%; margin-left: 23vw');
-  titleTextInput.style('font-size', width / 64);
+  //titleTextInput.style('font-size', width / 64);
   titleTextInput.input(myInputEvent);
   titleTextInput.attribute('disabled', true);
 
@@ -97,7 +100,7 @@ function setup() {
     textInput[i].addClass('textInput');
     //textInput[i].style('margin-bottom: 3vh; margin-left: 23vw');
     textInput[i].addClass('responsive');
-    textInput[i].style('font-size', width / 64);
+    //textInput[i].style('font-size', width / 64);
     textInput[i].input(myInputEvent);
     textInput[i].attribute('disabled', true);
     //textInput[i].hide();
@@ -162,9 +165,21 @@ function setup() {
   submitButton.parent(poemContainer);
   //submitButton.mouseClicked(submitVerse);
 
+ // Wrong rhyme alert
+
+ wrongRhyme = createDiv();
+ wrongRhyme.id('tutorialBox');
+ wrongRhyme.hide();
+ wrongRhyme.class('responsive');
+ wrongRhyme.parent(wrongRhymeAlert_container);
+
+ danteImage = createImg("assets/Dante.png");
+ danteImage.parent(tutorialBox);
+ danteImage.id('danteImage');
+ danteImage.class('responsive');
 
 
-
+  ///////////////////////////////////////////////////////////////////////////// SOCKET
   socket = io();
 
   ///////////////////////////// sending to each client its socket.id
@@ -488,7 +503,7 @@ function sendAll() {
     //console.log(status);
   }
   console.log(data.line);
-  window.open("poetries_home_links.html", "_self");
+  window.open("poetries_home_links.html", "_self");  /// after submitting the last verse, the user is directed to the gallery pages
 }
 
 function syllablesData(data) {
