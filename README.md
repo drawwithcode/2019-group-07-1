@@ -138,43 +138,33 @@ function setup() {
 
 # Retrieving and sending data from and to a database
 Since we want people to be able to look at others’ poems, we had to use a database to store and retrieve data. We found out that firebase, a database service provided by google, is quite handy to do that. 
-Sending the data
+
+## Sending the data
 After initialising firebase in the code, we made so that each time the 9th line is submitted, thus when the poem is completed, each of the lines is joined together with the others and then sent to our database as value of a property of an object with a unique id as name. Also the title of the poem is sent as value of another property.
 ``` javascript
-// in setup
-saveButtonAll.mousePressed(sendAll);
-//////////////////////////////////////////
-// Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  database = firebase.database();
-
-  var ref = database.ref("lines"); //setting up the lines path
-}// end of setup
-
+////////////////////////////// when the last verse it's submitted, all the values of the text inputs are sent to the firebase database
 function sendAll() {
+  var ref = database.ref("lines"); //setting up the lines path
 
-var ref = database.ref("lines"); //setting up the lines path
+  // setting the properties of the javascript objects which will compose the data
+  var data = {
 
-// setting the properties of the javascript objects which will compose the data
-var data = {
+    title: titleTextInput.value(),
+    line: textInput[0].value() + '<br>' + textInput[1].value() + '<br>' + textInput[2].value() + '<br>' + '<br>' + textInput[3].value() + '<br>' + textInput[4].value() + '<br>' + textInput[5].value() + '<br>' + '<br>' + textInput[6].value() + '<br>' + textInput[7].value() + '<br>' + textInput[8].value()
 
-title: "line1",
-line: textInput.value()
+  };
 
-};
+  var sentLine = ref.push(data, dataSent); //sends the data to database
+  //console.log(sentLine.key); //shows the key created for the sent data
 
-var sentLine = ref.push(data, dataSent); //sends the data to database
-console.log(sentLine.key); //shows the key created for the sent data
-
-function dataSent(err, status) {
-  console.log(status);
-}
-
-
-
+  function dataSent(err, status) {
+    //console.log(status);
+  }
+  console.log(data.line);
+  window.open("poetries_home_links.html", "_self");  /// after submitting the last verse, the user is directed to the gallery pages
 }
 ```
-# Retrieving the data
+## Retrieving the data
 After sending the new poem to the database, we want it to send it back, so that the gallery of our app is kept up to date. So each time a change is detected in the path that leads to our poems in the database, some callback functions are triggered, in particular “gotData”, which extracts all the unique IDs in our database and creates a link for them. When clicked on, they will open a document with a unique link.
 
 ``` javascript
