@@ -16,6 +16,8 @@ Together with this, what we do is to help people get creative with this activity
 
 The name of the project, The Online Comedy, is an assonance of the great poem of Dante, The Divine Comedy, because we wanted to refer to it for the reasons above and because our aim is to collect all these poems to create a huge poem in honor of Dante.
 
+<img width=100% src="https://github.com/drawwithcode/2019-group-07-1/blob/master/public/assets/rhyme.gif">
+
 Considering that the site have been made in honor of Dante, the poems have to be written in "terza rima" (ABA BCB CDC…), which  is a rhyming verse stanza form that consists of an interlocking three-line rhyme scheme. We decided to let the users write only 9 lines and the maximum of writers for a poem is three. The writing system uses turns: the first to arrive is the first to write (and decides also the title of the poem), the second is the second, and so on; after every writer has sent a line, the turns will restart from the first person, and so on. Once the writers reach nine published lines, the poem will be automatically published on the gallery.
 
 The site is designed for computer because writings serious poems takes time and we imagine the users writing while sitting on chairs in their houses with a cup of tea.
