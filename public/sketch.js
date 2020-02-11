@@ -63,7 +63,7 @@ function setup() {
 
   var poemContainer = select('#poemContainer');
   var submitContainer = select('#submitContainer');
-  submitContainer.addClass('responsive');
+  //submitContainer.addClass('responsive');
   var lettersContainer = select('#lettersContainer');
 
 
@@ -82,6 +82,7 @@ function setup() {
     textInput[i].addClass('textInput');
     //textInput[i].style('margin-bottom: 3vh; margin-left: 23vw');
     textInput[i].addClass('responsive');
+    textInput[i].style('font-size', width/64);
     textInput[i].input(myInputEvent);
     textInput[i].attribute('disabled', true);
     //textInput[i].hide();
