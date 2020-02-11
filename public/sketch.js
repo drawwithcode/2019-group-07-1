@@ -340,8 +340,8 @@ function checkRhyme(currentVerse) {
 
 function getRhymes(word) {
   // this function request the arrays of perfect rhymes (rel_rhy) and homophones rhymes (rel_hom)
-  var urlPerfect = 'http://api.datamuse.com/words?rel_rhy=' + word;
-  var urlHomophones = 'http://api.datamuse.com/words?rel_hom=' + word;
+  var urlPerfect = 'https://api.datamuse.com/words?rel_rhy=' + word;
+  var urlHomophones = 'https://api.datamuse.com/words?rel_hom=' + word;
 
   loadJSON(urlPerfect, perfectData);
   loadJSON(urlHomophones, homophonesData);
