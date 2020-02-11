@@ -144,7 +144,7 @@ function setup() {
 }
 ```
 
-# Retrieving and sending data from and to a database
+## Retrieving and sending data from and to a database
 Since we want people to be able to look at others’ poems, we had to use a database to store and retrieve data. We found out that firebase, a database service provided by google, is quite handy to do that. 
 
 ## Sending the data
@@ -271,7 +271,7 @@ In the new document the user will find the poem corresponding to the unique id p
 The most important obvious inspiration is The Divine Comedy of Dante Alighieri and indeed we used “terza rima” for the poems. The idea of the project is taken from the cigarette game, where one person has to write a sentence on a paper, cover it and then gave the paper to another person and so on.
 Instead, the visual inspiration, has been books of 1200s, written by hand and with brown ink. So we used a font a little bit irregular, to remind the hand written books, and a font similar to those used in the firsts printed books, so we were inspired by the firsts editions of The Divine Comedy.
  
-# Credits (third libraries used)
+# Credits
 
 - [Datamuse API](https://www.datamuse.com/api/), to check for the correctness of rhymes also using homophones
 - [Firebase](https://firebase.google.com/?hl=it), to set up a database for our poems
