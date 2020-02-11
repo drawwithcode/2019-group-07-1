@@ -109,7 +109,7 @@ function setup() {
     submitVerseButton[i].addClass('submitVerseButton');
     submitVerseButton[i].addClass('responsive');
     submitVerseButton[i].parent(poemContainer);
-    submitVerseButton[i].position(poemContainer.width + width / 19.2, i * height / 13.5);
+    submitVerseButton[i].position(width - width/1.7, i * height / 20); //1126px
 
     rhymeScheme[i] = createDiv();
     rhymeScheme[i].parent(lettersContainer);
@@ -125,14 +125,18 @@ function setup() {
   }
   textInput[3].style('margin-top: 2vh');
   // submitVerseButton[3].style('margin-top: 1.7vh');
+
   rhymeScheme[3].style('margin-top: 4.7vh');
   for (var i = 3; i < 6; i++) {
     textInput[i].style('margin-bottom: 1.5vh; margin-left: 23vw');
     // submitVerseButton[i].style('margin-bottom: 0.5vh');
+    submitVerseButton[i].style('margin-top: 0.6vh');
     rhymeScheme[i].style('margin-bottom: 2.5vh');
   }
   textInput[6].style('margin-top: 2vh;');
-  // submitVerseButton[6].style('margin-top: 1.7vh');
+  submitVerseButton[6].style('margin-top: 1vh');
+  submitVerseButton[7].style('margin-top: 1vh');
+  submitVerseButton[8].style('margin-top: 1vh');
   rhymeScheme[6].style('margin-top: 4.4vh');
   for (var i = 6; i < 9; i++) {
     textInput[i].style('margin-bottom: 1.5vh; margin-left: 23vw');
@@ -707,6 +711,7 @@ function draw() {
     }
   } else if (verse_0 == true) {
     if (myId != clientsId[a]) {
+      submitTitleButton.hide();
       notMyTurn(0);
       submitVerseButton[0].hide();
       // abbe console.log('not my turn');
@@ -720,9 +725,11 @@ function draw() {
     }
   } else if (verse_1 == true) {
     if (myId != clientsId[b]) {
+      submitTitleButton.hide();
       notMyTurn(1);
       // abbe console.log('not my turn');
     } else if (myId == clientsId[b]) {
+      submitTitleButton.hide();
       myTurn(1);
       socket.emit('sendCurrentTurn', {
         msg: currentTurn
@@ -731,9 +738,11 @@ function draw() {
     }
   } else if (verse_2 == true) {
     if (myId != clientsId[c]) {
+      submitTitleButton.hide();
       notMyTurn(2);
       // abbe console.log('not my turn');
     } else if (myId == clientsId[c]) {
+      submitTitleButton.hide();
       myTurn(2);
       socket.emit('sendCurrentTurn', {
         msg: currentTurn
@@ -742,9 +751,11 @@ function draw() {
     }
   } else if (verse_3 == true) {
     if (myId != clientsId[d]) {
+      submitTitleButton.hide();
       notMyTurn(3);
       // abbe console.log('not my turn');
     } else if (myId == clientsId[d]) {
+      submitTitleButton.hide();
       myTurn(3);
       socket.emit('sendCurrentTurn', {
         msg: currentTurn
@@ -753,9 +764,11 @@ function draw() {
     }
   } else if (verse_4 == true) {
     if (myId != clientsId[e]) {
+      submitTitleButton.hide();
       notMyTurn(4);
       // abbe console.log('not my turn');
     } else if (myId == clientsId[e]) {
+      submitTitleButton.hide();
       myTurn(4);
       socket.emit('sendCurrentTurn', {
         msg: currentTurn
@@ -764,9 +777,11 @@ function draw() {
     }
   } else if (verse_5 == true) {
     if (myId != clientsId[f]) {
+      submitTitleButton.hide();
       notMyTurn(5);
       // abbe console.log('not my turn');
     } else if (myId == clientsId[f]) {
+      submitTitleButton.hide();
       myTurn(5);
       socket.emit('sendCurrentTurn', {
         msg: currentTurn
@@ -775,9 +790,11 @@ function draw() {
     }
   } else if (verse_6 == true) {
     if (myId != clientsId[g]) {
+      submitTitleButton.hide();
       notMyTurn(6);
       // abbe console.log('not my turn');
     } else if (myId == clientsId[g]) {
+      submitTitleButton.hide();
       myTurn(6);
       socket.emit('sendCurrentTurn', {
         msg: currentTurn
@@ -786,9 +803,11 @@ function draw() {
     }
   } else if (verse_7 == true) {
     if (myId != clientsId[h]) {
+      submitTitleButton.hide();
       notMyTurn(7);
       // abbe console.log('not my turn');
     } else if (myId == clientsId[h]) {
+      submitTitleButton.hide();
       myTurn(7);
       socket.emit('sendCurrentTurn', {
         msg: currentTurn
@@ -797,9 +816,11 @@ function draw() {
     }
   } else if (verse_8 == true) {
     if (myId != clientsId[i]) {
+      submitTitleButton.hide();
       notMyTurn(8);
       // abbe console.log('not my turn');
     } else if (myId == clientsId[i]) {
+      submitTitleButton.hide();
       myTurn(8);
       socket.emit('sendCurrentTurn', {
         msg: currentTurn
