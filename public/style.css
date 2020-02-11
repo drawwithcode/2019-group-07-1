@@ -180,7 +180,7 @@ body {
   font-family: 'IMFellDWPica-Regular';
   background-color: transparent;
   border-color: transparent;
-  border-bottom-color: black;
+  border-bottom-color: #C05746;
   /* padding-bottom: 15px; */
   color: black;
   /* font-size: 30px; */
@@ -191,7 +191,23 @@ body {
   height: 3.5vh;
   transform: translate(-50%, -50%);
 }
-
+#titleTextInput {
+  /* background-color: black;
+  border-color: black; */
+  font-family: 'IMFellDWPica-Regular';
+  background-color: transparent;
+  border-color: transparent;
+  border-bottom-color: #C05746;
+  /* padding-bottom: 15px; */
+  color: black;
+  /* font-size: 30px; */
+  /* position: absolute;
+  top: 30%;
+  left: 50%; */
+  width: 25vw;
+  height: 3.5vh;
+  transform: translate(-50%, -50%);
+}
 .inputBackground {
   color: red;
 }

@@ -1,19 +1,9 @@
-var textInput1;
-var textInputsArray = [];
-var textInput;
-var inputContainersArray = [];
-var inputContainer;
-
-var singleSave;
-var saveButtonAll;
-
-
 function setup() {
 
 
    canvas = createCanvas(200, 200);
-  //
-  // canvas.mousePressed(startPath);
+  background(0);
+
    canvas.parent('canvascontainer');
 
 
@@ -39,11 +29,9 @@ function setup() {
 
 
 
-function gotData(data) { //data is what is being retrieved from the database
+function gotData(data) { //"data" argument is what is being retrieved from the database
 
-var lines = data.val() //extracts as javascript object and selects the data content = an object which contains all the keys
-//console.log(lines);
-var keys = Object.values(lines) //selects all the values of the properties in the extracted object and puts them in var "keys" array
+
 /////
 
 // selects all the elements with class listing, which will be the links generated
@@ -57,25 +45,40 @@ elts[i].remove();
 
 }
 
-/////
-for (var i = 0; i < keys.length; i++) {
+var singleKey = getURLParams();
 
-var key = keys[i].line; //selects each key
+var refSingleKey = database.ref("lines/" + singleKey.id );
 
-var poemsList = createElement("li", "");
+// reads, just when called without keep reading and listening for changes from that moment on (->once),
+// the value of the given key and then executes callback functions. It is a check of existence which triggers callbacks
+refSingleKey.once("value", oneLine, errData);
+
+function oneLine(data) {
+
+var singlePoemData = data.val();
+var singlePoem = singlePoemData.line;
+
+var poemsList = createElement("div", "");
 poemsList.class("listing");
-var poem = createP(key);
+var poem = createP(singlePoem);
 poem.parent(poemsList);
 
 poemsList.parent("lineslist");
-
+console.log(singlePoemData);
 }
 
+
+
+
+
+
+
+console.log(key);
 }
 
 function errData(err) {
 
-//console.log(err);
+console.log(err);
 
 }
 

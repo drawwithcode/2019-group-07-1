@@ -3,26 +3,69 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0>
-    <style> body {padding: 0; margin: 0;} </style>
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+      }
+
+/* .listing {
+position: relative;
+left: 33vw;
+
+} */
+
+
+
+.listing {
+    display: inline-block;
+    position: relative;
+    margin: 1%;
+    float: left;
+    width: 23%;
+    height: 23vw;
+    background-color: lightgrey;
+    text-align: center;
+
+
+}
+
+.listingLink {
+
+position:relative;
+top: 50%;
+transform: translateY(-50%);
+
+
+
+}
+
+a.listingLink {
+
+text-decoration: none;
+/* color:red; */
+
+}
+
+    </style>
     <script src="addons/p5.min.js"></script>
     <script src="addons/p5.sound.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.8.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-database.js"></script>
-    <script src="poetries_home.js"></script>
+    <script src="poetries_home_links.js"></script>
   </head>
   <body>
 
     <div id ="canvascontainer"></div>
 
+<div id="linkParent">
+
+
+</div>
 
 
 
-
-      <p>
-        <ol id="lineslist">
-
-        </ol>
 
   </body>
 </html>

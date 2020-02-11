@@ -4,6 +4,7 @@ var titleTextInput;
 var textInput = [];
 var submitVerseButton = [];
 var rhymeScheme = [];
+var feathers = [];
 var previousOne;
 var currentOne;
 
@@ -31,6 +32,7 @@ var myId = [];
 var clientsId = [];
 var numberOfClients = 20;
 
+var title = false;
 var verse_0 = false;
 var verse_1 = false;
 var verse_2 = false;
@@ -72,9 +74,22 @@ function setup() {
   writePoemBackground.class('responsive');
   writePoemBackground.parent(backgroundContainer);
 
-  // titleTextInput = createInput();
-  // titleTextInput.addClass('textInput');
-  // titleTextInput.parent(poemContainer);
+  titleTextInput = createInput();
+  titleTextInput.id('titleTextInput');
+  titleTextInput.addClass('textInput');
+  titleTextInput.addClass('responsive');
+  titleTextInput.parent(titleContainer);
+  titleTextInput.attribute('placeholder', 'Type the Title');
+  titleTextInput.style('position: absolute; top: -17%; margin-left: 23vw');
+  titleTextInput.style('font-size', width / 64);
+  titleTextInput.input(myInputEvent);
+  titleTextInput.attribute('disabled', true);
+
+  submitTitleButton = createButton('send');
+  submitTitleButton.addClass('submitVerseButton');
+  submitTitleButton.style('position: absolute; top: -17%; right: 10%');
+  submitTitleButton.parent(titleContainer);
+  submitTitleButton.mouseClicked(submitTitle);
 
   for (var i = 0; i < 9; i++) {
     textInput[i] = createInput();
@@ -82,7 +97,7 @@ function setup() {
     textInput[i].addClass('textInput');
     //textInput[i].style('margin-bottom: 3vh; margin-left: 23vw');
     textInput[i].addClass('responsive');
-    textInput[i].style('font-size', width/64);
+    textInput[i].style('font-size', width / 64);
     textInput[i].input(myInputEvent);
     textInput[i].attribute('disabled', true);
     //textInput[i].hide();
@@ -148,6 +163,8 @@ function setup() {
   //submitButton.mouseClicked(submitVerse);
 
 
+
+
   socket = io();
 
   ///////////////////////////// sending to each client its socket.id for debug
@@ -195,7 +212,10 @@ function setup() {
 
     //console.log(receivedData.msg);
     var turn = receivedData.msg;
-    if (turn == 0) {
+    if (turn == -1) {
+      title = true;
+    } else if (turn == 0) {
+      title = false;
       verse_0 = true;
       verse_8 = false;
     } else if (turn == 1) {
@@ -231,8 +251,9 @@ function setup() {
   socket.on("verseBroadcast", showVerse);
 
   function showVerse(receivedData) {
-
-    if (currentTurn == 0) {
+    if (currentTurn == -1) {
+      titleTextInput.value(receivedData.msg);
+    } else if (currentTurn == 0) {
       textInput[0].value(receivedData.msg);
     } else if (currentTurn == 1) {
       textInput[1].value(receivedData.msg);
@@ -344,16 +365,35 @@ function homophonesData(data) {
     //console.log(data[i].word.toLowerCase());
   }
 }
+/////////////////////////////// First user fills the title
 
-
-////////////////////////////// 'A'
-function startTurn_0() {
-  verse_0 = true;
+function fillTitle() {
+  title = true;
 
   socket.emit('startNextRound', {
-    msg: 0
+    msg: -1
   });
 }
+
+function submitTitle() {
+  if (titleTextInput.value() != 0) {
+    title = false;
+    verse_1 = true;
+
+    socket.emit('startNextRound', {
+      msg: 0
+    });
+  }
+}
+
+////////////////////////////// 'A'
+// function startTurn_0() {
+//   verse_0 = true;
+//
+//   socket.emit('startNextRound', {
+//     msg: 0
+//   });
+// }
 
 function submitVerse_0() {
   if (textInput[0].value() != 0) {
@@ -486,7 +526,7 @@ function sendAll() {
   // setting the properties of the javascript objects which will compose the data
   var data = {
 
-    position: "line1",
+    title: titleTextInput.value(),
     line: textInput[0].value() + '<br>' + textInput[1].value() + '<br>' + textInput[2].value() + '<br>' + '<br>' + textInput[3].value() + '<br>' + textInput[4].value() + '<br>' + textInput[5].value() + '<br>' + '<br>' + textInput[6].value() + '<br>' + textInput[7].value() + '<br>' + textInput[8].value()
 
   };
@@ -659,7 +699,7 @@ function draw() {
 
   if (numberOfClients == 1) {
     socket.emit('startFirstRound', {
-      msg: 0
+      msg: -1
     });
   }
 
@@ -703,75 +743,92 @@ function draw() {
     g = 0;
     h = 1;
     i = 2;
-  } else if (numberOfClients == 4) {
-    a = 0;
-    b = 1;
-    c = 2;
-    d = 3;
-    e = 0;
-    f = 1;
-    g = 2;
-    h = 3;
-    i = 0;
-  } else if (numberOfClients == 5) {
-    a = 2;
-    b = 3;
-    c = 4;
-    d = 0;
-    e = 1;
-    f = 2;
-    g = 3;
-    h = 3;
-    i = 0;
-  } else if (numberOfClients == 6) {
-    a = 2;
-    b = 3;
-    c = 4;
-    d = 5;
-    e = 0;
-    f = 1;
-    g = 2;
-    h = 3;
-    i = 0;
-  } else if (numberOfClients == 7) {
-    a = 2;
-    b = 3;
-    c = 4;
-    d = 5;
-    e = 6;
-    f = 0;
-    g = 1;
-    h = 3;
-    i = 0;
-  } else if (numberOfClients == 8) {
-    a = 2;
-    b = 3;
-    c = 4;
-    d = 5;
-    e = 6;
-    f = 7;
-    g = 0;
-    h = 3;
-    i = 0;
-  } else if (numberOfClients == 9) {
-    a = 2;
-    b = 3;
-    c = 4;
-    d = 5;
-    e = 6;
-    f = 7;
-    g = 8;
-    h = 3;
-    i = 0;
   }
+  // else if (numberOfClients == 4) {
+  //   a = 0;
+  //   b = 1;
+  //   c = 2;
+  //   d = 3;
+  //   e = 0;
+  //   f = 1;
+  //   g = 2;
+  //   h = 3;
+  //   i = 0;
+  // } else if (numberOfClients == 5) {
+  //   a = 2;
+  //   b = 3;
+  //   c = 4;
+  //   d = 0;
+  //   e = 1;
+  //   f = 2;
+  //   g = 3;
+  //   h = 3;
+  //   i = 0;
+  // } else if (numberOfClients == 6) {
+  //   a = 2;
+  //   b = 3;
+  //   c = 4;
+  //   d = 5;
+  //   e = 0;
+  //   f = 1;
+  //   g = 2;
+  //   h = 3;
+  //   i = 0;
+  // } else if (numberOfClients == 7) {
+  //   a = 2;
+  //   b = 3;
+  //   c = 4;
+  //   d = 5;
+  //   e = 6;
+  //   f = 0;
+  //   g = 1;
+  //   h = 3;
+  //   i = 0;
+  // } else if (numberOfClients == 8) {
+  //   a = 2;
+  //   b = 3;
+  //   c = 4;
+  //   d = 5;
+  //   e = 6;
+  //   f = 7;
+  //   g = 0;
+  //   h = 3;
+  //   i = 0;
+  // } else if (numberOfClients == 9) {
+  //   a = 2;
+  //   b = 3;
+  //   c = 4;
+  //   d = 5;
+  //   e = 6;
+  //   f = 7;
+  //   g = 8;
+  //   h = 3;
+  //   i = 0;
+  // }
   //block other users conparing the socket.id of each client
   //with the socket.id of the active client in a given turn
-  if (verse_0 == true) {
+  if (title == true) {
+    if (myId != clientsId[a]) {
+      hideTextInput();
+      submitTitleButton.hide();
+      titleTextInput.attribute('disabled');
+      // abbe console.log('not my turn');
+    } else if (myId == clientsId[a]) {
+      titleTextInput.removeAttribute('disabled');
+      submitTitleButton.show();
+      hideTextInput();
+      socket.emit('sendCurrentTurn', {
+        msg: currentTurn
+      });
+      // abbe console.log('verse 0');
+    }
+  } else if (verse_0 == true) {
     if (myId != clientsId[a]) {
       notMyTurn(0);
       submitVerseButton[0].hide();
       // abbe console.log('not my turn');
     } else if (myId == clientsId[a]) {
+      submitTitleButton.hide();
       myTurn(0);
       socket.emit('sendCurrentTurn', {
         msg: currentTurn

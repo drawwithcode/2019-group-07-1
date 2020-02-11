@@ -41,7 +41,7 @@ var currentTurn = -1;
 io.sockets.on('connection', function(socket) {
   //console.log(socket);
   //var allClients = [];
-  var connectionsLimit = 4;
+  var connectionsLimit = 3;
 
  if (first == true) {
     turn_0_id = socket.id;

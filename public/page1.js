@@ -94,7 +94,7 @@ function openWritePoetryPage() {
 }
 
 function openGalleryPage() {
-  window.open("poetries_home.html", "_self");
+  window.open("poetries_home_links.html", "_self");
 }
 
 function openTutorial() {
