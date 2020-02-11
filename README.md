@@ -16,6 +16,8 @@ Together with this, what we do is to help people get creative with this activity
 
 The name of the project, The Online Comedy, is an assonance of the great poem of Dante, The Divine Comedy, because we wanted to refer to it for the reasons above and because our aim is to collect all these poems to create a huge poem in honor of Dante.
 
+<img width=100% src="https://github.com/drawwithcode/2019-group-07-1/blob/master/public/assets/rhyme.gif">
+
 Considering that the site have been made in honor of Dante, the poems have to be written in "terza rima" (ABA BCB CDC…), which  is a rhyming verse stanza form that consists of an interlocking three-line rhyme scheme. We decided to let the users write only 9 lines and the maximum of writers for a poem is three. The writing system uses turns: the first to arrive is the first to write (and decides also the title of the poem), the second is the second, and so on; after every writer has sent a line, the turns will restart from the first person, and so on. Once the writers reach nine published lines, the poem will be automatically published on the gallery.
 
 The site is designed for computer because writings serious poems takes time and we imagine the users writing while sitting on chairs in their houses with a cup of tea.
@@ -24,7 +26,7 @@ The site is designed for computer because writings serious poems takes time and 
 
 ![](https://i.imgur.com/v79oQAq.png)
 
-In the first page we have the main menu with three buttons: they have been designed differently from the title, to allow users to understand that they are of a different category: with one category you can interact (the one with red borders), while with the other one you can't (brown borders). In the “Write a poem” section, on the center you have a big parchment with nine empty lines with on the left a scheme of the "terza rima" which is clearly a sign for the user to type something, following the scheme. Then there’s a column of feathers that are as much as the number of the writers (maximum three for poem) and one of them is pointed out with a "YOU" written at the bottom to show the user when it's is his turn. In the gallery section instead you have all the poems, one for parchment, ordered in chronological time, to show a list of all the poems. There's also a tutorial to explain the user how the app works.
+In the first page we have the main menu with three buttons: they have been designed differently from the title, to allow users to understand that they are of a different category: with one category you can interact (the one with red borders), while with the other one you can't (brown borders). In the “Write a poem” section, on the center you have a big parchment with nine empty lines with on the left a scheme of the "terza rima" which is clearly a sign for the user to type something, following the scheme. In the gallery section instead you have all the poems, one for parchment, ordered in chronological time, to show a list of all the poems. There's also a tutorial to explain the user how the app works.
 To follow the style of La Divina Commedia we decided to use a handmade design with brown colors, as those used on 1200’s books.  So all the drawings were made by hand using photoshop.
 The elements are clearly not innovative, because we were inspired by 1200s style, so we used a simple style for this reason, and also to facilitate the users on understanding the functioning of the site.
 
@@ -45,7 +47,7 @@ function checkRhyme(currentVerse) {
 }
 
 function getRhymes(word) {
-  // this function request the arrays of perfect rhymes (rel_rhy) and homophones rhymes (rel_hom)
+  // this function requests the arrays of perfect rhymes (rel_rhy) and homophones rhymes (rel_hom)
   var urlPerfect = 'https://api.datamuse.com/words?rel_rhy=' + word;
   var urlHomophones = 'https://api.datamuse.com/words?rel_hom=' + word;
 
@@ -73,7 +75,6 @@ The other thing that we found difficult to program was the turns system. To avoi
 
 ``` javascript
 function draw() {
-  //background(255);
 
   // the client asks its socket.id to the server
   var mySocketid = {
@@ -111,11 +112,6 @@ function setup() {
     clientsId = receivedData.clients;
     numberOfClients = receivedData.n_clients;
   }
-
-  socket.on("turnIds", function(receivedData) {
-    id_0 = receivedData.t_0;
-    id_1 = receivedData.t_1;
-  });
 
   /////////////////each client receives the value of the current turn, on the base of which the clients manage the interactions
 
