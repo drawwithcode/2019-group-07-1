@@ -4,11 +4,11 @@ By Luca Bernardi, Gianluca Locatelli, Lucia Mazzanti
 [Creative Coding 2019/2020](https://drawwithcode.github.io/2019/)
 Politecnico di Milano - Scuola del Design
 Faculty: Michele Mauri, Andrea Benedetti
-
+![](https://i.imgur.com/ZSphSNn.png)
 # Project idea
 At the beginning, inspired by the game of the cigarette, we wanted to develop a site where people could write fun sentences together just to pass time. Then, we thought of Dantedì, a day of the year dedicated to the great figure of Dante Alighieri, so we decided to design a site in honor of him to remember this important figure, to spread the Italian literature of 1200 and to make people interested in it. To do that we designed a site where people could write poems together in "terza rima" and also read other people’s poems. 
 
-Together with this, what we do is to help people get creative with this activity. [A research](https://www.bbc.com/news/entertainment-arts-48188508) by BBC Arts and the University College London reveals that even a small amount of creativity each day can boost well-being, as creative acts help us to feel less stressed, think clearly and grow as people.
+Together with this, what we do is to help people get creative with this activity. [The research](https://www.bbc.com/news/entertainment-arts-48188508) by BBC Arts and the University College London reveals that even a small amount of creativity each day can boost well-being, as creative acts help us to feel less stressed, think clearly and grow as people.
 
 The name of the project, The Online Comedy, is an assonance of the great poem of Dante, The Divine Comedy, because we wanted to refer to it for the reasons above and because our aim is to collect all these poems to create a huge poem in honor of Dante.
 
@@ -22,6 +22,7 @@ To follow the style of La Divina Commedia we decided to use a handmade design wi
 The elements are clearly not innovative, because we were inspired by 1200s style, so we used a simple style for this reason, and also to facilitate the users on understanding the functioning of the site.
 
 # Code challenges
+![](https://i.imgur.com/56M4Dgs.png)
 One of the most difficult challenge to face was to build the rhyme section; to check that two verses are in rhyme we used datamuse.api, which allows us (among the many features that the service has) to obtain a JSON containing an array of the words which rhyme with a certain word. In the english language there are the perfect rhymes, but also the homophones, that are words with the same sound but different spelling. For this reason we ask to the api both for an array of the words in perfect rhyme and an array with the homophones words. After that we make a text comparison between the last word of the current verse with the the arrays of the last word of the corresponding previous verse.
 ``` javascript
 function checkRhyme(currentVerse) {
