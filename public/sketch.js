@@ -69,7 +69,6 @@ function setup() {
   var submitContainer = select('#submitContainer');
   //submitContainer.addClass('responsive');
   var lettersContainer = select('#lettersContainer');
-  var wrongRhymeContainer = select('#lettersContainer');
 
 
   writePoemBackground = createImg('./assets/writePoemBackground.png');
@@ -172,15 +171,34 @@ function setup() {
  // Wrong rhyme alert
 
  wrongRhyme = createDiv();
- wrongRhyme.id('tutorialBox');
+ wrongRhyme.id('wrongRhyme');
  wrongRhyme.hide();
  wrongRhyme.class('responsive');
- wrongRhyme.parent(wrongRhymeAlert_container);
 
- danteImage = createImg("assets/Dante.png");
- danteImage.parent(tutorialBox);
- danteImage.id('danteImage');
- danteImage.class('responsive');
+ wrongText = createP('That\'s not a rhyme! <br><br>Try again, <br> my fellow poet.');
+ wrongText.parent(wrongRhyme);
+ wrongText.id('wrongText');
+
+ danteImageAlert = createImg("assets/Dante.png");
+ danteImageAlert.parent(wrongRhyme);
+ danteImageAlert.id('danteImageAlert');
+ danteImageAlert.class('responsive');
+
+ // waiting for more users alert
+
+ waitingAlert = createDiv();
+ waitingAlert.id('waitingAlert');
+ waitingAlert.hide();
+ waitingAlert.class('responsive');
+
+ waitingText = createP('Waiting for other <br>fellow poets...');
+ waitingText.parent(waitingAlert);
+ waitingText.id('waitingText');
+
+ danteImageWaitingAlert = createImg("assets/Dante.png");
+ danteImageWaitingAlert.parent(waitingAlert);
+ danteImageWaitingAlert.id('danteImageWaitingAlert');
+ danteImageWaitingAlert.class('responsive');
 
 
   ///////////////////////////////////////////////////////////////////////////// SOCKET
@@ -322,8 +340,8 @@ function checkRhyme(currentVerse) {
 
 function getRhymes(word) {
   // this function request the arrays of perfect rhymes (rel_rhy) and homophones rhymes (rel_hom)
-  var urlPerfect = 'https://api.datamuse.com/words?rel_rhy=' + word;
-  var urlHomophones = 'https://api.datamuse.com/words?rel_hom=' + word;
+  var urlPerfect = 'http://api.datamuse.com/words?rel_rhy=' + word;
+  var urlHomophones = 'http://api.datamuse.com/words?rel_hom=' + word;
 
   loadJSON(urlPerfect, perfectData);
   loadJSON(urlHomophones, homophonesData);
@@ -473,6 +491,7 @@ function submitVerse_8() {
 }
 
 function activeVerse_9() {
+  // last verse
   textInput[8].removeClass('inputBackground');
   verse_8 = false;
   //console.log('end');
@@ -597,7 +616,12 @@ function draw() {
     socket.emit('startFirstRound', {
       msg: -1
     });
+    waitingAlert.show();
+  } else {
+    waitingAlert.hide();
   }
+
+
 
   if (start == true) {
     turnOneId();
@@ -909,11 +933,16 @@ function draw() {
         } else if (currentTurn == 8) {
           activeVerse_9();
         }
+        wrongRhyme.hide();
         //console.log('rhymeMatch');
       } else if (perfectArray.some(keyword => !currentOne[currentOne.length - 1].includes(keyword)) || homophonesArray.some(keyword => !currentOne[currentOne.length - 1].includes(keyword))) {
         ok = true;
         // coloring the verse in red if there's not a match
         textInput[currentTurn].addClass('inputBackground');
+         wrongRhyme.show();
+        setTimeout(function () {
+          wrongRhyme.hide();
+        }, 4000);
         //console.log('no rhymeMatch');
       }
     }

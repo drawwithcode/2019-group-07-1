@@ -125,16 +125,6 @@ body {
   height: 610px; */
   transform: translate(-50%, -50%);
 }
-#danteImage {
-  position: relative;
-  left: 22%;
-  top: 50%;
-  width: 25.3vw;
-  /* height: 56.48vh; */
-  /* width: 486px;
-  height: 610px; */
-  transform: translate(-50%, -50%);
-}
 #tutorialSentence {
   font-family: 'DonegalOne-Regular';
   position: absolute;
@@ -278,4 +268,76 @@ body {
   top: 110%;
   left: 100%;
   transform: translate(-50%, -50%);
+}
+#wrongRhyme {
+  position: absolute;
+  right: 2.5%;
+  top: 82.5%;
+  font-family: 'DonegalOne-Regular';
+  background-color: #e9dec6;
+  border: solid 0.3vw;
+  border-color: #C05746;
+  font-size: 2.1875em;
+  width: 22vw;
+  height: 24vh;
+  transform: translateY(-50%);
+}
+#danteImageAlert {
+  position: relative;
+  left: 57%;
+  top: 7%;
+  width: 8.5vw;
+  /* height: 56.48vh; */
+  /* width: 486px;
+  height: 610px; */
+  transform: translate(-50%, -50%);
+  transform: scaleX(-1);
+}
+#wrongText {
+  font-family: 'DonegalOne-Regular';
+  position: absolute;
+  left: 4%;
+  top: 25%;
+  font-size: 1.04vw; /*20px */
+  width: 25vw;
+  /* height: 56.48vh; */
+  /* width: 486px;
+  height: 610px; */
+  transform: translateY(-50%);
+}
+/* waiting for more users */
+#waitingAlert {
+  position: absolute;
+  left: 2.5%;
+  top: 82.5%;
+  font-family: 'DonegalOne-Regular';
+  background-color: #e9dec6;
+  border: solid 0.3vw;
+  border-color: #C05746;
+  font-size: 2.1875em;
+  width: 22vw;
+  height: 24vh;
+  transform: translateY(-50%);
+}
+#danteImageWaitingAlert {
+  position: relative;
+  left: 25%;
+  top: 50%;
+  width: 8.5vw;
+  /* height: 56.48vh; */
+  /* width: 486px;
+  height: 610px; */
+  transform: translate(-50%, -50%);
+}
+#waitingText {
+  font-family: 'DonegalOne-Regular';
+  position: absolute;
+  left: 50%;
+  top: 25%;
+  font-size: 1.04vw; /*20px */
+  width: 25vw;
+  /* height: 56.48vh; */
+  /* width: 486px;
+  height: 610px; */
+  transform: translateY(-50%);
 }
