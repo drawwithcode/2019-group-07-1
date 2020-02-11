@@ -75,7 +75,6 @@ The other thing that we found difficult to program was the turns system. To avoi
 
 ``` javascript
 function draw() {
-  //background(255);
 
   // the client asks its socket.id to the server
   var mySocketid = {
@@ -113,11 +112,6 @@ function setup() {
     clientsId = receivedData.clients;
     numberOfClients = receivedData.n_clients;
   }
-
-  socket.on("turnIds", function(receivedData) {
-    id_0 = receivedData.t_0;
-    id_1 = receivedData.t_1;
-  });
 
   /////////////////each client receives the value of the current turn, on the base of which the clients manage the interactions
 
