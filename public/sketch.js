@@ -167,27 +167,20 @@ function setup() {
 
   socket = io();
 
-  ///////////////////////////// sending to each client its socket.id for debug
+  ///////////////////////////// sending to each client its socket.id
 
   socket.on("hereIsYourID", getMyID);
 
   function getMyID(receivedData) {
     myId = receivedData.id;
-    //console.log('myId: ' + receivedData.id);
-    //console.log(myId);
   }
 
+  ////////////////////////////// sending to each client the list of socket.id
   socket.on("clientsUpdate", getMyUpdate);
 
   function getMyUpdate(receivedData) {
-    //receivedData.clients.push(clientsId);
     clientsId = receivedData.clients;
     numberOfClients = receivedData.n_clients;
-    // console.log(receivedData.clients);
-    // console.log("clients: \n" + receivedData.clients);
-    // console.log(clientsId);
-    // console.log(clientsId[0]);
-    //console.log(receivedData.n_clients);
   }
 
   socket.on("turnIds", function(receivedData) {
@@ -195,22 +188,12 @@ function setup() {
     id_1 = receivedData.t_1;
   });
 
-  ///////////////////////////// the user ONE send a message that blocks the others users from writing
-  // socket.on("currentCounter", function (receivedData) {
-  //       counter = receivedData.count;
-  // });
+  /////////////////each client receives the value of the current turn, on the base of which the clients manage the interactions
 
-
-  // socket.on("currentTurn", currentTurn);
-  //
-  // function currentTurn(receivedData) {
-  //   turn = receivedData.msg;
-  // }
   socket.on("nextRound", nextTurn);
 
   function nextTurn(receivedData) {
-
-    //console.log(receivedData.msg);
+    /// these variables show, disable or hide the correct text inputs in the draw() function
     var turn = receivedData.msg;
     if (turn == -1) {
       title = true;
@@ -244,13 +227,12 @@ function setup() {
       verse_8 = true;
     }
     currentTurn = turn;
-    //console.log('turn: ' + turn);
-
   }
 
   socket.on("verseBroadcast", showVerse);
 
   function showVerse(receivedData) {
+    // this funtion allow all the users to see in real-time the text that a user is writing, in the right text input
     if (currentTurn == -1) {
       titleTextInput.value(receivedData.msg);
     } else if (currentTurn == 0) {
@@ -272,7 +254,6 @@ function setup() {
     } else if (currentTurn == 8) {
       textInput[8].value(receivedData.msg);
     }
-
   }
 
   socket.on("err", connectionError);
@@ -283,16 +264,7 @@ function setup() {
 
   }
 
-  socket.on("dddBroadcast", prova1);
-
-  function prova1(receivedData) {
-
-    console.log(receivedData.msg);
-    textInput[0].value(receivedData.msg);
-
-  }
-
-  // Firebase configuration
+  ///////////////////////// Firebase configuration
   var firebaseConfig = {
     apiKey: "AIzaSyCfh_QHd5Gsccp_ZSJkK2eg7mzV6SBioic",
     authDomain: "online-comedy-poems.firebaseapp.com",
@@ -320,24 +292,17 @@ function turnOneId() {
 
 
 function checkRhyme(currentVerse) {
-  previousOne = textInput[currentVerse - 2].value().split(" ");
-  currentOne = textInput[currentVerse].value().split(" ");
+  // get the text inside the previous corrisponding verse (e.g. ABA) with input.value(), then split it in its single words with split() function
+  previousOne = textInput[currentVerse - 2].value().split(" "); // previous A verse
+  // get the text inside the current verse with input.value(), then split it in its single words with split() function
+  currentOne = textInput[currentVerse].value().split(" "); // current A verse
+  // call a function with the last word of the previous corrisponding verse as a parameter
   getRhymes(previousOne[previousOne.length - 1]);
-  //console.log(previousOne[previousOne.length - 1]);
-  // if (perfectArray.some(keyword => currentOne[currentOne.length - 1].includes(keyword)) || homophonesArray.some(keyword => currentOne[currentOne.length - 1].includes(keyword))) {
-  //   console.log('rhymeMatch');
-  //   textInput[currentVerse].removeClass('inputBackground');
-  //   rhymeMatch = true;
-  // }
-  // else if (perfectArray.some(keyword => !currentOne[currentOne.length - 1].includes(keyword)) || homophonesArray.some(keyword => !currentOne[currentOne.length - 1].includes(keyword))) {
-  //
-  //   console.log('no rhymeMatch');
-  //   rhymeMatch = false;
-  // }
-  console.log('previous verse: \n' + previousOne + '\nlast word_0: ' + previousOne[previousOne.length - 1] + '\nlast word_1: ' + currentOne[currentOne.length - 1] + '\nrhymeMatch: ' + rhymeMatch); //'\nperfect rhymes: \n' + perfectArray[ + '\nhomophones rhymes: \n' + homophonesArray +
+  //console.log('previous verse: \n' + previousOne + '\nlast word_0: ' + previousOne[previousOne.length - 1] + '\nlast word_1: ' + currentOne[currentOne.length - 1] + '\nrhymeMatch: ' + rhymeMatch); //'\nperfect rhymes: \n' + perfectArray[ + '\nhomophones rhymes: \n' + homophonesArray +
 }
 
 function getRhymes(word) {
+  // this function request the arrays of perfect rhymes (rel_rhy) and homophones rhymes (rel_hom)
   var urlPerfect = 'https://api.datamuse.com/words?rel_rhy=' + word;
   var urlHomophones = 'https://api.datamuse.com/words?rel_hom=' + word;
 
@@ -346,34 +311,22 @@ function getRhymes(word) {
 }
 
 function perfectData(data) {
-  perfectWords = data;
-  //console.log(data[0].word);
-  //console.log("PERFECT RHYME :");
+  // push all the perfect rhymes in an array
   for (var i = 0; i < data.length; i++) {
     perfectArray[i] = data[i].word.toLowerCase();
-    //_data.push(perfectArray);
     //console.log(data[i].word);
   }
 }
 
 function homophonesData(data) {
-  homophonesWords = data;
-  //console.log(data[0].word);
+  // push all the homophones rhymes in an array
   for (var i = 0; i < data.length; i++) {
     homophonesArray[i] = data[i].word.toLowerCase();
-    //_data.push(homophonesArray);
     //console.log(data[i].word.toLowerCase());
   }
 }
-/////////////////////////////// First user fills the title
-
-function fillTitle() {
-  title = true;
-
-  socket.emit('startNextRound', {
-    msg: -1
-  });
-}
+//////////////////// The first user types the title and sends it to the system,
+///////////////////triggering the next turn by sending a message to the server and then to all the other users
 
 function submitTitle() {
   if (titleTextInput.value() != 0) {
@@ -385,15 +338,8 @@ function submitTitle() {
     });
   }
 }
-
+///////////////////////////////////////////// functions triggered by the send button of each verse
 ////////////////////////////// 'A'
-// function startTurn_0() {
-//   verse_0 = true;
-//
-//   socket.emit('startNextRound', {
-//     msg: 0
-//   });
-// }
 
 function submitVerse_0() {
   if (textInput[0].value() != 0) {
@@ -424,7 +370,7 @@ function submitVerse_2() {
 }
 
 function activeVerse_3() {
-  textInput[2].removeClass('inputBackground');
+  textInput[2].removeClass('inputBackground'); /// remove the red color from the sentence (in case the user made a mistake in the previous turn)
   verse_2 = false;
   verse_3 = true;
 
@@ -510,16 +456,20 @@ function submitVerse_8() {
 function activeVerse_9() {
   textInput[8].removeClass('inputBackground');
   verse_8 = false;
-  //verse_7 = true;
-
-  // socket.emit('startNextRound', {
-  //   msg: 7
-  // });
-  console.log('fine');
+  //console.log('end');
   sendAll();
 }
 /////////////////////////////////////
+//////////// function that sends the values of the text inputs to the other users in realt-time
+function myInputEvent() {
 
+  var sendData = {
+    msg: this.value()
+  }
+  socket.emit('verse', sendData);
+}
+
+////////////////////////////// when the last verse it's submitted, all the values of the text inputs are sent to the firebase database
 function sendAll() {
   var ref = database.ref("lines"); //setting up the lines path
 
@@ -538,6 +488,7 @@ function sendAll() {
     //console.log(status);
   }
   console.log(data.line);
+  window.open("poetries_home_links.html", "_self");
 }
 
 function syllablesData(data) {
@@ -566,77 +517,6 @@ function countSyllables(wordSyllable) {
   loadJSON(urlSyllables, syllablesData);
 }
 
-// function submitVerse() {
-//   submitClicked = true;
-//
-//   var verseToSplit = textInput[0].value();
-//   var verseToSplit3 = textInput[2].value();
-//
-//
-//   verse = verseToSplit.split(" ");
-//   verse3 = verseToSplit3.split(" ");
-//   console.log(verse);
-//   console.log(verse3);
-//   getRhymes(verse[verse.length - 1]);
-//   console.log(perfectArray);
-//   console.log(homophonesArray);
-//   //getRhymes(verse3[verse3.length -1]);
-//   //getRhymes(textInput.value());
-//
-//
-//   for (var i = 0; i < verse.length; i++) {
-//     countSyllables(verse[i]);
-//   }
-//
-//
-// }
-
-
-
-
-function myInputEvent() {
-
-  var sendData = {
-    msg: this.value()
-  }
-
-  socket.emit('verse', sendData);
-
-  // var sendProva = {
-  //    msg: this.value()
-  // }
-  //
-  // socket.emit('ddd', sendProva);
-
-  //console.log('you are typing: ', this.value());
-
-  //   var arraySplit = this.value().split(" ");
-  //   splitArrayLength = this.value().length;
-  //
-  //   var x = arraySplit.toString();
-  //
-  //
-  //
-  //   console.log(x);
-  //   console.log('fields: '+ fields.length);
-  //   console.log('comma: '+ commaCheck);
-  //   var y = true;
-  //   if (x.includes(',') && y == true){
-  //     y == false;
-  //     commaCheck++;
-  //     countSyllables(arraySplit[commaCheck]);
-  //     fields = x.split(',');
-  //   }
-  //   if (fields[commaCheck+1].includes(',')) {
-  //
-  //      countSyllables(arraySplit[commaCheck]);
-  //     commaCheck++;
-  //     fields = fields[commaCheck+1].split(',');
-  //   }
-  // console.log(arraySplit.length);
-  // console.log(arraySplit);
-
-}
 
 function hideTextInput() {
   for (var i = 0; i < 9; i++) {
@@ -653,7 +533,6 @@ function showTextInput() {
 
 function myTurn(verseToShow) {
   // show the right textInput based on the turn, hide the rest
-
   for (var i = verseToShow - 1; i >= 0; i--) {
     textInput[i].attribute('disabled');
     submitVerseButton[i].hide();
@@ -669,7 +548,6 @@ function myTurn(verseToShow) {
 
 function notMyTurn(inputToBlock) {
   // block the current text input to the others users, hide the rest
-
   for (var i = inputToBlock - 1; i >= 0; i--) {
     textInput[i].attribute('disabled', true);
     submitVerseButton[i].hide();
@@ -684,20 +562,19 @@ function notMyTurn(inputToBlock) {
 
 function draw() {
   //background(255);
-  //text(data.data[0].word, 0, 500);
 
-  // imageMode(CENTER);
-  // var scalefactor = 1930000;
-  // image(backgroundImage, width / 2, height / 2, backgroundImage.width / scalefactor * (width * height), backgroundImage.height / scalefactor * (width * height));
-
+  // the client asks its socket.id to the server
   var mySocketid = {
     msg: 'tell me my socket.id'
   }
 
   socket.emit('mySocketid', mySocketid);
 
-
+  ////this piece of code kicks off all the turn system: when the first client connects to the server,
+  ////a message with the current turn is sent to the server to allow the first user to type a title.
+  ////The message is sent back to all the users in the setup() function to let them know what is the current turn
   if (numberOfClients == 1) {
+    ///// message to allow the first user to type a title
     socket.emit('startFirstRound', {
       msg: -1
     });
@@ -708,21 +585,11 @@ function draw() {
     start = false;
   }
 
-  // if (turn == 0) {
-  //   if (start == true) {
-  //     startTurn_0();
-  //     start = false;
-  //   }
-  // }
-
-  // socket.emit('counter', {
-  //   count: counter
-  // });
-
   //console.log('n° clients: \n' + numberOfClients + '\nlist of clients: \n' + clientsId + '\nmyId: \n' + myId + '\ncurrentTurn: ' + currentTurn, '\nturn_0_id = \n' + turn_0_id); // + '\nid_0: \n' + id_0 + '\nid_1: \n' + id_1
+
   var a, b, c, d, e, f, g, h, i;
 
-  // adjust the turn based on the number of connected clients
+  // setting the turns based on the number of connected clients
   if (numberOfClients == 2) {
     a = 0;
     b = 1;
@@ -805,7 +672,8 @@ function draw() {
   //   h = 3;
   //   i = 0;
   // }
-  //block other users conparing the socket.id of each client
+
+  //block other users by conparing the socket.id of each client
   //with the socket.id of the active client in a given turn
   if (title == true) {
     if (myId != clientsId[a]) {
@@ -987,39 +855,32 @@ function draw() {
   //
   // };
 
+  //text comparison between the last word of the current verse and the arrays of rhyming words (perfectArray and homophonesArray)
+  // of the last word of the corresponding previous verse
   if (submitClicked == true) {
     if (ok == false) {
       if (perfectArray.some(keyword => currentOne[currentOne.length - 1].includes(keyword)) || homophonesArray.some(keyword => currentOne[currentOne.length - 1].includes(keyword))) {
         ok = true;
+        ///////////////////////// trigger the next text input based on the current turn
         if (currentTurn == 2) {
           activeVerse_3();
         } else if (currentTurn == 3) {
           activeVerse_4();
-        }
-        // else if (currentTurn == 4){
-        //    activeVerse_5();
-        // }
-        else if (currentTurn == 5) {
+        } else if (currentTurn == 5) {
           activeVerse_6();
         } else if (currentTurn == 6) {
           activeVerse_7();
-        }
-        // else if (currentTurn == 7){
-        //    activeVerse_8();
-        // }
-        else if (currentTurn == 8) {
+        } else if (currentTurn == 8) {
           activeVerse_9();
-          console.log('ciao');
         }
-
-        console.log('rhymeMatch');
+        //console.log('rhymeMatch');
       } else if (perfectArray.some(keyword => !currentOne[currentOne.length - 1].includes(keyword)) || homophonesArray.some(keyword => !currentOne[currentOne.length - 1].includes(keyword))) {
         ok = true;
+        // coloring the verse in red if there's not a match
         textInput[currentTurn].addClass('inputBackground');
-        console.log('no rhymeMatch');
+        //console.log('no rhymeMatch');
       }
     }
-
   }
 }
 
