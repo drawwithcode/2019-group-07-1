@@ -2,7 +2,9 @@
 By Luca Bernardi, Gianluca Locatelli, Lucia Mazzanti
 
 [Creative Coding 2019/2020](https://drawwithcode.github.io/2019/)
+
 Politecnico di Milano - Scuola del Design
+
 Faculty: Michele Mauri, Andrea Benedetti
 
 ![](https://i.imgur.com/ZSphSNn.png)
@@ -275,6 +277,6 @@ Instead, the visual inspiration, has been books of 1200s, written by hand and wi
 
 - [Datamuse API](https://www.datamuse.com/api/), to check for the correctness of rhymes also using homophones
 - [Firebase](https://firebase.google.com/?hl=it), to set up a database for our poems
-- Font usati:
+- Fonts used:
   * IM FELL DW Pica regular, to simulate old writings
   * Donegal One regular, for the main titles and buttons
