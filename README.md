@@ -47,7 +47,7 @@ function checkRhyme(currentVerse) {
 }
 
 function getRhymes(word) {
-  // this function request the arrays of perfect rhymes (rel_rhy) and homophones rhymes (rel_hom)
+  // this function requests the arrays of perfect rhymes (rel_rhy) and homophones rhymes (rel_hom)
   var urlPerfect = 'https://api.datamuse.com/words?rel_rhy=' + word;
   var urlHomophones = 'https://api.datamuse.com/words?rel_hom=' + word;
 
