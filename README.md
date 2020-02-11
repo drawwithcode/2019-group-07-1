@@ -5,10 +5,12 @@ By Luca Bernardi, Gianluca Locatelli, Lucia Mazzanti
 Politecnico di Milano - Scuola del Design
 Faculty: Michele Mauri, Andrea Benedetti
 
+![](https://i.imgur.com/ZSphSNn.png)
+
 # Project idea
 At the beginning, inspired by the game of the cigarette, we wanted to develop a site where people could write fun sentences together just to pass time. Then, we thought of Dantedì, a day of the year dedicated to the great figure of Dante Alighieri, so we decided to design a site in honor of him to remember this important figure, to spread the Italian literature of 1200 and to make people interested in it. To do that we designed a site where people could write poems together in "terza rima" and also read other people’s poems. 
 
-Together with this, what we do is to help people get creative with this activity. [A research](https://www.bbc.com/news/entertainment-arts-48188508) by BBC Arts and the University College London reveals that even a small amount of creativity each day can boost well-being, as creative acts help us to feel less stressed, think clearly and grow as people.
+Together with this, what we do is to help people get creative with this activity. [The research](https://www.bbc.com/news/entertainment-arts-48188508) by BBC Arts and the University College London reveals that even a small amount of creativity each day can boost well-being, as creative acts help us to feel less stressed, think clearly and grow as people.
 
 The name of the project, The Online Comedy, is an assonance of the great poem of Dante, The Divine Comedy, because we wanted to refer to it for the reasons above and because our aim is to collect all these poems to create a huge poem in honor of Dante.
 
@@ -17,11 +19,17 @@ Considering that the site have been made in honor of Dante, the poems have to be
 The site is designed for computer because writings serious poems takes time and we imagine the users writing while sitting on chairs in their houses with a cup of tea.
 
 # Design challenges
-In the first page we have the main menu with three buttons: they have been designed differently from the title, to allow users to understand that they are of a different category: with one category you can interact (the one with red borders), while with the other one you can't (brown borders). In the “Write a poem” section, on the center you have a big parchment with nine empty lines with on the left a scheme of the "terza rima" which is clearly a sign for the user to type something, following the scheme. Then there’s a column of feathers that are as much as the number of the writers (maximum three for poem) and one of them is pointed out with a "YOU" written at the bottom to show the user when it's is his turn. In the gallery section instead you have all the poems, one for parchment, ordered in chronological time, to show a list of all the poems.
+
+![](https://i.imgur.com/v79oQAq.png)
+
+In the first page we have the main menu with three buttons: they have been designed differently from the title, to allow users to understand that they are of a different category: with one category you can interact (the one with red borders), while with the other one you can't (brown borders). In the “Write a poem” section, on the center you have a big parchment with nine empty lines with on the left a scheme of the "terza rima" which is clearly a sign for the user to type something, following the scheme. Then there’s a column of feathers that are as much as the number of the writers (maximum three for poem) and one of them is pointed out with a "YOU" written at the bottom to show the user when it's is his turn. In the gallery section instead you have all the poems, one for parchment, ordered in chronological time, to show a list of all the poems. There's also a tutorial to explain the user how the app works.
 To follow the style of La Divina Commedia we decided to use a handmade design with brown colors, as those used on 1200’s books.  So all the drawings were made by hand using photoshop.
 The elements are clearly not innovative, because we were inspired by 1200s style, so we used a simple style for this reason, and also to facilitate the users on understanding the functioning of the site.
 
 # Code challenges
+
+![](https://i.imgur.com/56M4Dgs.png)
+
 One of the most difficult challenge to face was to build the rhyme section; to check that two verses are in rhyme we used datamuse.api, which allows us (among the many features that the service has) to obtain a JSON containing an array of the words which rhyme with a certain word. In the english language there are the perfect rhymes, but also the homophones, that are words with the same sound but different spelling. For this reason we ask to the api both for an array of the words in perfect rhyme and an array with the homophones words. After that we make a text comparison between the last word of the current verse with the the arrays of the last word of the corresponding previous verse.
 ``` javascript
 function checkRhyme(currentVerse) {
@@ -136,7 +144,7 @@ function setup() {
 }
 ```
 
-# Retrieving and sending data from and to a database
+## Retrieving and sending data from and to a database
 Since we want people to be able to look at others’ poems, we had to use a database to store and retrieve data. We found out that firebase, a database service provided by google, is quite handy to do that. 
 
 ## Sending the data
@@ -208,9 +216,7 @@ function gotData(data) { //data is what is being retrieved from the database
     poemsList.parent("linkParent");
 
     poemLink.mousePressed(goToPoem);
-
-
-
+    
   }
 
 }
@@ -265,11 +271,10 @@ In the new document the user will find the poem corresponding to the unique id p
 The most important obvious inspiration is The Divine Comedy of Dante Alighieri and indeed we used “terza rima” for the poems. The idea of the project is taken from the cigarette game, where one person has to write a sentence on a paper, cover it and then gave the paper to another person and so on.
 Instead, the visual inspiration, has been books of 1200s, written by hand and with brown ink. So we used a font a little bit irregular, to remind the hand written books, and a font similar to those used in the firsts printed books, so we were inspired by the firsts editions of The Divine Comedy.
  
-# Credits (third libraries used)
+# Credits
 
 - [Datamuse API](https://www.datamuse.com/api/), to check for the correctness of rhymes also using homophones
 - [Firebase](https://firebase.google.com/?hl=it), to set up a database for our poems
-
-
-This repository is the starting point of the assignments given in the elective course [Creative Coding at Politecnico di Milano](https://www11.ceda.polimi.it/schedaincarico/schedaincarico/controller/scheda_pubblica/SchedaPublic.do?&evn_default=evento&c_classe=696598&__pj0=0&__pj1=3ed8420c42c849845b5caa3de626e8fc).
-Browse [this website](https://drawwithcode.github.io/) if you want to know more about it.
+- Font usati:
+  * IM FELL DW Pica regular, to simulate old writings
+  * Donegal One regular, for the main titles and buttons
