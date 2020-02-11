@@ -9,6 +9,8 @@ Faculty: Michele Mauri, Andrea Benedetti
 
 ![](https://i.imgur.com/ZSphSNn.png)
 
+Here there is the heroku app: https://the-online-comedy.herokuapp.com/
+
 # Project idea
 At the beginning, inspired by the game of the cigarette, we wanted to develop a site where people could write fun sentences together just to pass time. Then, we thought of Dantedì, a day of the year dedicated to the great figure of Dante Alighieri, so we decided to design a site in honor of him to remember this important figure, to spread the Italian literature of 1200 and to make people interested in it. To do that we designed a site where people could write poems together in "terza rima" and also read other people’s poems. 
 
