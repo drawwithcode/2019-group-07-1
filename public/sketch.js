@@ -548,12 +548,12 @@ function syllablesData(data) {
   // );
 }
 
-function countSyllables(wordSyllable) {
-  commaCheck = 0;
-  var urlSyllables = 'https://api.datamuse.com/words?sp=' + wordSyllable + '&max=1&md=s';
-
-  loadJSON(urlSyllables, syllablesData);
-}
+// function countSyllables(wordSyllable) {
+//   commaCheck = 0;
+//   var urlSyllables = 'https://api.datamuse.com/words?sp=' + wordSyllable + '&max=1&md=s';
+//
+//   loadJSON(urlSyllables, syllablesData);
+// }
 
 
 function hideTextInput() {

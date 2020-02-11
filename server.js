@@ -75,10 +75,6 @@ io.sockets.emit('turnIds', {
   io.of('/').clients((error, clients) => {
     if (error) throw error;
 
-
-
-
-
     socket.on('disconnect', function() {
       console.log(socket.id + ' Got disconnect!');
 
@@ -117,11 +113,6 @@ io.sockets.emit('turnIds', {
 
     });
 
-
-    // socket.on('terminate', function() {
-    //   socket.disconnect(0);
-    // });
-
     io.emit('clientsUpdate', {
       clients: clients,
       n_clients: io.engine.clientsCount
@@ -154,33 +145,6 @@ io.sockets.emit('turnIds', {
     console.log('number of clients: ' + io.engine.clientsCount);
     console.log('turn_0_id: ' + turn_0_id + '\nturn_1_id: ' + turn_1_id);
   });
-
-  // for (var i = 0; i < allClients.length; i++) {
-  //   console.log("allClients: " + allClients[i].id);
-  // }
-
-  // socket.on('counter', function (receivedData) {
-  //   io.sockets.emit("currentCounter", receivedData);
-  // });
-
-
-
-
-
-
-  // socket.on("ddd", dddMessage);
-  //
-  // function dddMessage(receivedData) {
-  //   console.log(receivedData);
-  //   console.log('id sending: ' + socket.id);
-  //   //socket.broadcast.emit("dddBroadcast", receivedData);
-  //   socket.broadcast.to(allClients[0].id).emit("dddBroadcast", receivedData);
-  // }
-  // socket.on('startRound', roundOne);
-  //
-  // function roundOne(receivedData) {
-  //   socket.broadcast.emit("roundOneBroadcast", receivedData);
-  // }
 
   socket.on("verse", verseMessage);
 
