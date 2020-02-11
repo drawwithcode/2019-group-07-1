@@ -13,10 +13,17 @@ body {
   display: block;
   font-size: 16px;
 }
+
 @font-face {
   font-family: 'DonegalOne-Regular';
-  src: url('assets/DonegalOne-Regular.ttf')  format('truetype');
+  src: url('assets/DonegalOne-Regular.ttf') format('truetype');
 }
+
+@font-face {
+  font-family: 'IMFellDWPica-Regular';
+  src: url('assets/IMFellDWPica-Regular.ttf') format('truetype');
+}
+
 /* ------------------------MAIN MENU -------------------------*/
 #menùBackground {
   position: absolute;
@@ -24,6 +31,7 @@ body {
   top: 50%;
   transform: translate(-50%, -50%);
 }
+
 #tutorialButton {
   position: absolute;
   left: 50%;
@@ -36,6 +44,7 @@ body {
   width: 12.5vw;
   height: 8.6vh;
   transform: translateX(-50%);
+  cursor: pointer;
 }
 
 #galleryButton {
@@ -50,7 +59,9 @@ body {
   width: 19vw;
   height: 10vh;
   transform: translateX(-50%);
+  cursor: pointer;
 }
+
 #poemButton {
   position: absolute;
   right: 2.5%;
@@ -63,13 +74,17 @@ body {
   width: 19vw;
   height: 10vh;
   transform: translateX(-50%);
+  cursor: pointer;
 }
+
 .brownColor {
   color: #4e301f;
 }
+
 .redColor {
   color: #C05746;
 }
+
 #tutorialBox {
   position: absolute;
   left: 50%;
@@ -83,6 +98,7 @@ body {
   height: 73vh;
   transform: translate(-50%, -50%);
 }
+
 #backTutorialButton {
   position: absolute;
   right: 1%;
@@ -96,6 +112,7 @@ body {
   height: 5vh;
   transform: translate(-50%, -50%);
 }
+
 #danteImage {
   position: relative;
   left: 22%;
@@ -106,10 +123,12 @@ body {
   height: 610px; */
   transform: translate(-50%, -50%);
 }
+
 .responsive {
   max-width: 100%;
   height: auto;
 }
+
 /* <------------------------ WRITE THE POETRY --------------------------> */
 #writePoemBackground {
   position: absolute;
@@ -117,60 +136,96 @@ body {
   top: 50%;
   transform: translate(-50%, -50%);
 }
+
 #backgroundContainer {
   position: absolute;
   top: 50%;
   left: 50%;
   width: 100vw;
   height: 100vh;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
 }
+
 #poemContainer {
   /* background-color: red; */
   position: absolute;
-  top: 50%;
+  top: 65.5%;
   left: 50%;
   width: 50vw;
   height: 70vh;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
+}
+
+#lettersContainer {
+  /* background-color: green; */
+  position: absolute;
+  top: 65%;
+  left: 32%;
+  width: 2vw;
+  height: 70vh;
+  transform: translate(-50%, -50%);
+}
+#submitContainer {
+  /* background-color: green; */
+  position: absolute;
+  top: 65%;
+  right: 23%;
+  width: 5vw;
+  height: 70vh;
+  transform: translate(-50%, -50%);
 }
 .textInput {
   /* background-color: black;
   border-color: black; */
+  font-family: 'IMFellDWPica-Regular';
   background-color: transparent;
-  border-color:transparent;
+  border-color: transparent;
   border-bottom-color: black;
   /* padding-bottom: 15px; */
-  color:black;
-  font-size: 20px;
+  color: black;
+  font-size: 30px;
   /* position: absolute;
   top: 30%;
   left: 50%; */
-  width: 40vw;
+  width: 25vw;
   height: 3vh;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
 }
+
 .inputBackground {
   color: red;
 }
+
 .submitVerseButton {
-  /* background-color: black; */
-  border-color: black;
+  font-family: 'IMFellDWPica-Regular';
+  background-color: #e9dec6;
+  border: solid 0.25vw;
+  border-color: #C05746;
+  padding: 0.26vw 1.48vh; /* 5px 16px*/
+  text-align: center;
   /* color: white; */
-  font-size: 22px;
+  font-size: 18px;
   /* padding : 10px; */
-  height: 2vh;
-  transform: translateX(-50%);
+  /* width: 20vw;
+  height: 2vh; */
+  transform: translate(-50%, -50%);
+  cursor: pointer;
 }
+
 .rhymeScheme {
   /* background-color: black; */
+  /* position: absolute;
+  left: 10%; */
+  font-family: 'IMFellDWPica-Regular';
   border-color: black;
   /* color: white; */
-  font-size: 30px;
+  font-size: 1.875em;
   /* padding : 10px; */
-  height: 3vh;
-  transform: translateX(-50%);
+  width: 2vw;
+  height: 2vh;
+  transform: translate(-50%, -50%);
 }
+
 #submitButton {
   /* background-color: black; */
   border-color: black;
@@ -180,5 +235,5 @@ body {
   position: absolute;
   top: 110%;
   left: 100%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
 }

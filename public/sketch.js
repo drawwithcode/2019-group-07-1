@@ -1,5 +1,6 @@
 var writePoemBackground;
 
+var titleTextInput;
 var textInput = [];
 var submitVerseButton = [];
 var rhymeScheme = [];
@@ -60,33 +61,64 @@ function setup() {
 
 
 
-  poemContainer = select('#poemContainer');
+  var poemContainer = select('#poemContainer');
+  var submitContainer = select('#submitContainer');
+  submitContainer.addClass('responsive');
+  var lettersContainer = select('#lettersContainer');
 
 
-    writePoemBackground = createImg('./assets/writePoemBackground.png');
-    writePoemBackground.id('writePoemBackground');
-      writePoemBackground.class('responsive');
-      writePoemBackground.parent(backgroundContainer);
+  writePoemBackground = createImg('./assets/writePoemBackground.png');
+  writePoemBackground.id('writePoemBackground');
+  writePoemBackground.class('responsive');
+  writePoemBackground.parent(backgroundContainer);
 
+  // titleTextInput = createInput();
+  // titleTextInput.addClass('textInput');
+  // titleTextInput.parent(poemContainer);
 
   for (var i = 0; i < 9; i++) {
     textInput[i] = createInput();
-    textInput[i].addClass('textInput');
-    textInput[i].input(myInputEvent);
     textInput[i].parent(poemContainer);
-    textInput[i].position(poemContainer.width / 2, i * height / 13.5);
+    textInput[i].addClass('textInput');
+    //textInput[i].style('margin-bottom: 3vh; margin-left: 23vw');
+    textInput[i].addClass('responsive');
+    textInput[i].input(myInputEvent);
     textInput[i].attribute('disabled', true);
     //textInput[i].hide();
 
-    submitVerseButton[i] = createButton('submit');
+    submitVerseButton[i] = createButton('Send');
     submitVerseButton[i].addClass('submitVerseButton');
-    submitVerseButton[i].parent(poemContainer);
-    submitVerseButton[i].position(poemContainer.width + width / 19.2, i * height / 13.5);
+    submitVerseButton[i].addClass('responsive');
+    submitVerseButton[i].parent(submitContainer);
+    //submitVerseButton[i].position(poemContainer.width + width / 19.2, i * height / 13.5);
 
     rhymeScheme[i] = createDiv();
+    rhymeScheme[i].parent(lettersContainer);
     rhymeScheme[i].addClass('rhymeScheme');
-    rhymeScheme[i].parent(poemContainer);
-    rhymeScheme[i].position(-width / 19.2, i * height / 13.5);
+    rhymeScheme[i].addClass('responsive');
+    //rhymeScheme[i].style('margin-bottom: 4vh');
+
+  }
+  for (var i = 0; i < 3; i++) {
+    textInput[i].style('margin-bottom: 1.5vh; margin-left: 23vw');
+    submitVerseButton[i].style('margin-bottom: 0.5vh');
+    rhymeScheme[i].style('margin-bottom: 2.5vh');
+  }
+  textInput[3].style('margin-top: 2vh');
+  submitVerseButton[3].style('margin-top: 1.7vh');
+  rhymeScheme[3].style('margin-top: 4.7vh');
+  for (var i = 3; i < 6; i++) {
+    textInput[i].style('margin-bottom: 1.5vh; margin-left: 23vw');
+    submitVerseButton[i].style('margin-bottom: 0.5vh');
+    rhymeScheme[i].style('margin-bottom: 2.5vh');
+  }
+  textInput[6].style('margin-top: 2vh;');
+  submitVerseButton[6].style('margin-top: 1.7vh');
+  rhymeScheme[6].style('margin-top: 4.4vh');
+  for (var i = 6; i < 9; i++) {
+    textInput[i].style('margin-bottom: 1.5vh; margin-left: 23vw');
+    submitVerseButton[i].style('margin-bottom: 0.5vh');
+    rhymeScheme[i].style('margin-bottom: 2.5vh');
   }
 
   submitVerseButton[0].mouseClicked(submitVerse_0);
@@ -448,24 +480,25 @@ function activeVerse_9() {
 /////////////////////////////////////
 
 function sendAll() {
-var ref = database.ref("lines"); //setting up the lines path
+  var ref = database.ref("lines"); //setting up the lines path
 
-// setting the properties of the javascript objects which will compose the data
-var data = {
+  // setting the properties of the javascript objects which will compose the data
+  var data = {
 
-position: "line1",
-line: textInput[0].value() + '<br>' + textInput[1].value() + '<br>' + textInput[2].value() + '<br>' + '<br>' + textInput[3].value() + '<br>' + textInput[4].value() + '<br>' + textInput[5].value() + '<br>' + '<br>'+ textInput[6].value() + '<br>' + textInput[7].value() + '<br>' + textInput[8].value()
+    position: "line1",
+    line: textInput[0].value() + '<br>' + textInput[1].value() + '<br>' + textInput[2].value() + '<br>' + '<br>' + textInput[3].value() + '<br>' + textInput[4].value() + '<br>' + textInput[5].value() + '<br>' + '<br>' + textInput[6].value() + '<br>' + textInput[7].value() + '<br>' + textInput[8].value()
 
-};
+  };
 
-var sentLine = ref.push(data, dataSent); //sends the data to database
-//console.log(sentLine.key); //shows the key created for the sent data
+  var sentLine = ref.push(data, dataSent); //sends the data to database
+  //console.log(sentLine.key); //shows the key created for the sent data
 
-function dataSent(err, status) {
-  //console.log(status);
+  function dataSent(err, status) {
+    //console.log(status);
+  }
+  console.log(data.line);
 }
-console.log(data.line);
-}
+
 function syllablesData(data) {
   dataReceived++;
   var xx = [];
