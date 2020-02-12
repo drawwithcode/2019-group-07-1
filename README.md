@@ -38,6 +38,7 @@ The elements are clearly not innovative, because we were inspired by 1200s style
 
 One of the most difficult challenge to face was to build the rhyme section; to check that two verses are in rhyme we used datamuse.api, which allows us (among the many features that the service has) to obtain a JSON containing an array of the words which rhyme with a certain word. In the english language there are the perfect rhymes, but also the homophones, that are words with the same sound but different spelling. For this reason we ask to the api both for an array of the words in perfect rhyme and an array with the homophones words. After that we make a text comparison between the last word of the current verse with the the arrays of the last word of the corresponding previous verse.
 ``` javascript
+////// From sketch.js file
 function checkRhyme(currentVerse) {
   // get the text inside the previous corrisponding verse (e.g. ABA) with input.value(), then split it in its single words with split() function
   previousOne = textInput[currentVerse - 2].value().split(" "); // previous A verse
@@ -73,9 +74,11 @@ function homophonesData(data) {
   }
 }
 ```
-The other thing that we found difficult to program was the turns system. To avoid overlappings in the text input we had to implement a turn system with the socket.io library. Every time that a client connects, he is identificated automatically with his own socket.id, that we used to associate every client with to the various turn, in order of arrival in the room (the first user to connect is associated to the first turn, the second user to the second turn and the third user to the third turn). At the fourth turn the first user will start over, than the second and so on. To make all this possible to every client is sent his own socket.id and the list of all the socket.id to allow a comparison and recognise which client is associated to every turn. The first user is recognised and it sends a message with the current turn to all the other clients. When a user sends his verse to the system, after it has been accepted, another message is sent with the change of turn to all the clients. Based on the value of this message all the interactions are managed on the client-side (i.e. “disabled input” and “and” etc.)
+The other thing that we found difficult to program was the turns system. To avoid overlappings in the text input we had to implement a turn system with the socket.io library. Every time that a client connects, he is identificated automatically with his own socket.id, that we used to associate every client to the various turns, in order of arrival in the room (the first user to connect is associated to the first turn, the second user to the second turn and the third user to the third turn). At the fourth turn the first user will start over, than the second and so on. To make all this possible to every client is sent his own socket.id and the list of all the socket.id to allow a comparison and recognise which client is associated to every turn. The first user is recognised and it sends a message with the current turn to all the other clients. When a user sends his verse to the system, after it has been accepted, another message is sent with the change of turn to all the clients. Based on the value of this message all the interactions are managed on the client-side (i.e. disable the input)
 
 ``` javascript
+/// From skecth.js file
+
 function draw() {
 
   // the client asks its socket.id to the server
@@ -133,14 +136,19 @@ function setup() {
       verse_1 = true;
     } else if (turn == 2) {
 }
-
-//////////////////////// get the list of clients and the number of clients, then send the data to all the sockets
+/////// From server.js file
+//////////////////////// get the list of clients and the number of clients from the server, then send the data to all the sockets
+io.sockets.on('connection', function(socket) {
   io.of('/').clients((error, clients) => {
     if (error) throw error;
+    
+      socket.on('disconnect', function() {
         io.emit('clientsUpdate', {
           clients: clients,
           n_clients: io.engine.clientsCount
         });
+        }
+    }
 }
 ```
 
@@ -272,7 +280,8 @@ The most important obvious inspiration is The Divine Comedy of Dante Alighieri a
 Instead, the visual inspiration, has been books of 1200s, written by hand and with brown ink. So we used a font a little bit irregular, to remind the hand written books, and a font similar to those used in the firsts printed books, so we were inspired by the firsts editions of The Divine Comedy.
  
 # Credits
-
+- [p5.js](https://p5js.org/)
+- [Socket.io](https://socket.io/), turn system
 - [Datamuse API](https://www.datamuse.com/api/), to check for the correctness of rhymes also using homophones
 - [Firebase](https://firebase.google.com/?hl=it), to set up a database for our poems
 - Fonts used:
